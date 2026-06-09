@@ -82,7 +82,7 @@ flowchart TD
 | 2.1 | Spatial CoV (3-tier) | 🟣 2 | macrovascular / long transit time | PASS <0.55 · WARN 0.55–0.67 · **FAIL >0.67** *(ExploreASL)* | `REQUIRED` |
 | 2.2 | SNR (tSNR if 4D) | 🟣 2 | low signal / noisy scan | higher = better | `REQUIRED` |
 | 2.3 | Histogram plausibility | 🟣 2 | severe noise, failed labeling | supporting | `REQUIRED` |
-| 3.1 | Mean/median GM & WM CBF | 🔵 3 | bad M0, global labeling failure | WARN outside 40–100 | `REQUIRED` |
+| 3.1 | Mean/median GM & WM CBF | 🔵 3 | bad M0, global labeling failure | **GM**: WARN outside 40–100 · **WM**: WARN outside 15–30 *(per-tissue per Maria)* | `REQUIRED` |
 | 3.2 | GM/WM ratio | 🔵 3 | no tissue contrast (poor label/motion) | FAIL ≤ 1 | `REQUIRED` |
 | 3.3 | Coregistration overlap | 🔵 3 | CBF↔structural misregistration | FAIL Dice < 0.7 | `REQUIRED`* |
 | 4.1 | QEI-Net (DL) | ⚪ 4 | general degradation (learned) | model cut-off | `STRETCH` |
@@ -109,7 +109,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  A["INPUT: CBF map + GM/WM/CSF prob maps + brain mask"] --> C["PRE-STEP: resample tissue maps to CBF space,<br/>smooth CBF 5mm FWHM, mask NaN/Inf"]
+  A["INPUT: CBF map (required)<br/>tissue maps + brain mask (optional → use defaults)"] --> C["PRE-STEP: if no brain mask → BET-style extraction;<br/>if no tissue maps → warp MNI priors to CBF space;<br/>resample, smooth CBF 5mm FWHM, mask NaN/Inf"]
 
   C --> Q["Module 1: QEI engine"]
   Q --> Q1["1.1 structural similarity<br/>Pearson of CBF vs (2.5*GM + 1*WM)"]
@@ -130,14 +130,14 @@ flowchart TD
   C -.stretch.-> M41["4.1 QEI-Net deep-learning score"]
   C -.stretch.-> M42["4.2 Left-right asymmetry index"]
 
-  QS --> V["Per-check result: metric + verdict + reason<br/>(a check missing its inputs returns UNKNOWN, never crashes)"]
+  QS --> V["Per-check result: metric + verdict + reason<br/>(missing inputs → UNKNOWN; UNKNOWN now escalates overall to WARN)"]
   M21 --> V
   M22 --> V
   M23 --> V
   M31 --> V
   M32 --> V
   M33 --> V
-  V --> AGG["Aggregate verdict:<br/>any FAIL means FAIL, any WARN means WARN, else PASS"]
+  V --> AGG["Aggregate verdict:<br/>any FAIL means FAIL, any WARN or UNKNOWN means WARN, else PASS"]
   AGG --> REP["Report: scores + flags + AURA artifact category"]
 
   classDef struct fill:#1e293b,color:#fff,stroke:#0b1220,stroke-width:1px;
@@ -156,15 +156,24 @@ flowchart TD
   class REP report;
 ```
 
-**End to end:** user provides a CBF map (ideally + tissue maps + brain mask) → a shared **pre-step**
-prepares the data once → each check runs **independently** and returns *metric + verdict + reason*
-(missing inputs → **UNKNOWN**, never crashes) → verdicts **aggregate** conservatively → a **report**
-lists scores, flags, and AURA categories.
+**End to end:** user provides a CBF map (tissue maps + brain mask are **optional** — the pre-step
+falls back to BET-style extraction + MNI tissue priors if missing, per Maria's feedback) → a shared
+**pre-step** prepares the data once → each check runs **independently** and returns *metric +
+verdict + reason* (a check whose inputs are still missing returns **UNKNOWN**, never crashes — and
+**any UNKNOWN escalates the overall verdict to WARN** so the report is never silently incomplete,
+per Maria's feedback) → verdicts **aggregate** conservatively → a **report** lists scores, flags,
+and AURA categories.
 
-> **🔧 The shared pre step (runs once):** resample GM/WM/CSF probability maps onto the CBF voxel grid ·
-> smooth the CBF map **5 mm FWHM** for the QEI (its constants + 0.5 cut-off assume it; ASLPrep smooths
-> inside its QEI function) · clean NaN/Inf · build tissue masks by thresholding probability maps
-> (threshold value = open question, see end).
+> **🔧 The shared pre-step (runs once):**
+> 1. **Brain-extraction fallback** *(per Maria's feedback)* — if no brain mask is provided, run a
+>    lightweight BET-style extraction on the CBF map.
+> 2. **Default tissue priors fallback** *(per Maria's feedback)* — if GM/WM/CSF probability maps are
+>    not provided, warp **default MNI-space tissue priors** into the CBF space.
+> 3. Resample GM/WM/CSF probability maps onto the CBF voxel grid (if not already aligned).
+> 4. Smooth the CBF map **5 mm FWHM** for the QEI (its constants + 0.5 cut-off assume it; ASLPrep
+>    smooths inside its QEI function).
+> 5. Clean NaN/Inf.
+> 6. Build tissue masks by thresholding probability maps (threshold value = open question, see end).
 
 ---
 
@@ -244,11 +253,17 @@ pure NumPy (no scipy). **Source:** ExploreASL-style histogram QC.
 "Are the absolute numbers physiologically sensible, and is the map aligned to anatomy?"
 
 ### 3.1 Mean / median GM & WM CBF · `REQUIRED`
-> `in:` CBF + GM/WM masks → `out:` mean & median GM/WM CBF → `verdict:` WARN if GM outside ~40–100 mL/100g/min; FAIL if absurd (<10 or >150)
+> `in:` CBF + GM/WM masks → `out:` mean & median GM/WM CBF →
+> `verdict:` **separate thresholds per tissue** *(per Maria's feedback — one range can't fit both)*
+> - **GM**: WARN if outside ~**40–100** mL/100g/min; FAIL if absurd (< 10 or > 150)
+> - **WM**: WARN if outside ~**15–30** mL/100g/min; FAIL if absurd (< 5 or > 50)
 
 **Catches:** a bad M0 / global labeling failure / wrong scaling — values wildly off usually mean a
-calibration problem, not biology. Population-dependent (neonates ~20–50) → use config profiles; prefer
-WARN for clinical low-perfusion. **Source:** White Paper QA section; ASLPrep.
+calibration problem, not biology. **Population *and* organ-dependent** *(per Maria's feedback —
+v1.0 is brain; kidney / placenta / preclinical organs use entirely different reference ranges, so
+the cut-offs live in **per-population AND per-organ config profiles**)*. Within brain, neonates ≈
+20–50 GM; elderly run lower; for clinical low-perfusion populations **prefer WARN over FAIL**.
+**Source:** White Paper QA section (p.17, GM 40–100); ASLPrep.
 
 ### 3.2 GM/WM CBF ratio · `REQUIRED`
 > `in:` CBF + GM/WM masks → `out:` ratio = mean(GM)/mean(WM) → `verdict:` PASS > 1.5, WARN 1–1.5, FAIL ≤ 1
@@ -290,7 +305,7 @@ Needs symmetric-space CBF → often UNKNOWN; prefer contralateral comparison for
 flowchart LR
   IN["All per-check verdicts"] --> R{"Any FAIL?"}
   R -->|"yes"| F["Overall = FAIL"]
-  R -->|"no"| W{"Any WARN?"}
+  R -->|"no"| W{"Any WARN<br/>or UNKNOWN?"}
   W -->|"yes"| WW["Overall = WARN"]
   W -->|"no"| P["Overall = PASS"]
   classDef input fill:#1e293b,color:#fff,stroke:#0b1220,stroke-width:2px;
@@ -304,9 +319,11 @@ flowchart LR
   class WW w;
   class P p;
 ```
-**Rule (conservative):** any **FAIL → FAIL**; else any **WARN → WARN**; else **PASS**. UNKNOWN checks
-are listed but don't block the verdict (batch jobs never crash on one incomplete subject). **The same
-rule is reused by Stream A.**
+**Rule (conservative):** any **FAIL → FAIL**; else any **WARN _or UNKNOWN_ → WARN**; else **PASS**.
+*(Per Maria's feedback — UNKNOWN now **escalates** to WARN. If a check couldn't be evaluated, we
+flag the overall report as WARN so the user knows it's incomplete, rather than silently passing.)*
+Each UNKNOWN check is listed in the report with its reason (e.g. "no T1w provided → 3.3 UNKNOWN").
+**The same rule is reused by Stream A.**
 
 ---
 
@@ -343,7 +360,7 @@ flowchart TD
   M73 --> V
   M51 --> V
   M52 --> V
-  V --> AGG["Aggregate verdict (same rule as Stream B)"]
+  V --> AGG["Aggregate verdict (same rule as Stream B):<br/>FAIL > WARN/UNKNOWN > PASS"]
   AGG --> REP["Raw-data QC report"]
 
   classDef struct fill:#1e293b,color:#fff,stroke:#0b1220,stroke-width:1px;
@@ -473,4 +490,3 @@ data (and flags missing critical fields). **Source:** White Paper.
 - **QEI-Net** — Beltran Urbano X, …, Dolui S. ISMRM 2025. [github.com/xavibeltranurbano/QEI-Net](https://github.com/xavibeltranurbano/QEI-Net)
 - **ASL-BIDS** — Clement P, et al. Scientific Data 2022;9:543.
 - **FWD** — Power JD, et al. NeuroImage 2012;59(3):2142–2154.
-
