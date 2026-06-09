@@ -471,22 +471,3 @@ against consensus (PCASL LD ≈ 1800 ms; PLD per population). **Source:** White 
 data (and flags missing critical fields). **Source:** White Paper.
 
 ---
-
-## 📤 Output / report (both streams)
-- **JSON** per subject: overall verdict + every metric + per-check verdict & reason + UNKNOWN list.
-- **Web / HTML view**: human-readable version (stretch; the JSON is the core deliverable).
-- Each flagged issue → an **AURA artifact category** (high sCoV → *macrovascular*; many negatives →
-  *SNR failure*; control/label swap → *labeling error*; M0 saturation → *calibration artifact*).
-
-
-## 📚 Sources
-**Papers**
-- **QEI** — Dolui S, et al. JMRI 2024;60(6):2497–2508. [doi:10.1002/jmri.29308](https://doi.org/10.1002/jmri.29308) · 
-- **ASL White Paper** — Alsop DC, et al. MRM 2015;73(1):102–116. [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197) · 
-- **ASLPrep** — Adebimpe A, et al. Nat Methods 2022;19:683–686. · `researchpaper/nihms-1827527.pdf`
-- **ExploreASL** — Mutsaerts HJMM, et al. NeuroImage 2020;219:117031.
-- **Spatial CoV** — Mutsaerts HJMM, et al. JCBFM 2017;37(9):3184–3192.
-- **SCORE** — Dolui S, et al. JMRI 2017;45(6):1786–1797.
-- **QEI-Net** — Beltran Urbano X, …, Dolui S. ISMRM 2025. [github.com/xavibeltranurbano/QEI-Net](https://github.com/xavibeltranurbano/QEI-Net)
-- **ASL-BIDS** — Clement P, et al. Scientific Data 2022;9:543.
-- **FWD** — Power JD, et al. NeuroImage 2012;59(3):2142–2154.
