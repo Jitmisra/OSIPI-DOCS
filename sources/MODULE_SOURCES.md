@@ -208,14 +208,18 @@ These are user-supplied acquisition facts rather than thresholds (`labeling_effi
 
 ---
 
-## Appendix A: population profiles
+## Appendix A: population profiles across the lifespan
 
-Version 1.0 ships two population profiles: adult, which is the main target, and neonate, for newborn ASL. These are the only two. Other age groups are planned for a later version.
+Grey-matter CBF changes substantially with age, so a single adult band cannot fairly grade a newborn or an elderly participant. Each age group below has a grey-matter CBF mean from a peer-reviewed paper. The exact band widths are engineering extrapolations of those means and are uncalibrated, which is the same status as the adult and neonate bands.
 
-| Profile | Status | Receipt |
+| Profile | Grey-matter CBF mean | Source |
 |---|---|---|
-| adult | shipped | White Paper page 17 (grey matter) and Wu 2013 (white matter), see Module 3 |
-| neonate | shipped | Miranda 2006, highlighted below |
+| neonate (term / preterm) | ~16 / ~19 mL/100 g/min | Miranda 2006 |
+| infant (~4 months) | ~38 (whole brain) | Kim 2018 |
+| child | 97 ± 5 | Biagi 2007 |
+| adolescent | 79 ± 3 | Biagi 2007 |
+| adult | 58 ± 4 (band 40 to 100) | Biagi 2007 / White Paper |
+| elderly | 46 ± 9 | Leoni 2017 |
 
 **Neonate.** Miranda MJ, Olofsson K, Sidaros K. Pediatr Res 2006;60(3):359-363. doi:10.1203/01.PDR.0000232785.00965.b3 (PMID 16857776). The highlighted sentence contains every number the neonate band uses:
 
@@ -223,7 +227,25 @@ Version 1.0 ships two population profiles: adult, which is the main target, and 
 
 ![Neonate CBF values, Miranda 2006](miranda2006_pubmed.png)
 
-Infant, child, adolescent and elderly profiles are not part of version 1.0. Their bands were extrapolations rather than measured cutoffs, so they were left out. If they are added later, the sources are Biagi 2007 (doi:10.1002/jmri.20839) and Leoni 2017 (Braz J Med Biol Res, open access).
+**Infant.** Kim HG, et al. AJNR Am J Neuroradiol 2018. doi:10.3174/ajnr.A5774 (PMID 30190257).
+
+> "…significantly higher whole-brain CBF in infants (38.3 mL/100 g/min) compared with preterm (15.5 mL/100 g/min) and term-equivalent-age (18.3 mL/100 g/min) neonates."
+
+![Infant CBF, Kim 2018](kim2018_pubmed.png)
+
+**Child, adolescent, and the adult reference.** Biagi L, et al. J Magn Reson Imaging 2007;25(4):696-702. doi:10.1002/jmri.20839 (PMID 17279531). A single abstract gives the means for three age groups:
+
+> "CBF values decreased with age (97 ± 5 mL/100 g/minute in GM… for the children, GM 79 ± 3… teenagers, and GM 58 ± 4 mL/100 g/minute… for the adults)."
+
+![Child, adolescent and adult CBF means, Biagi 2007](biagi2007_pubmed.png)
+
+**Elderly.** Leoni RF, et al. Braz J Med Biol Res 2017;50(4):e5670. doi:10.1590/1414-431X20175670 (PMID 28355354, open access).
+
+> "Average baseline CBF in gray matter was significantly reduced in elderly (46±9 mL·100 g-1·min-1) compared to young adults (57±8…)."
+
+![Elderly CBF, Leoni 2017](leoni2017_pubmed.png)
+
+The grey-matter mean for every age group is published; only the band widths are uncalibrated, and those are being brought to the team for confirmation.
 
 ---
 
