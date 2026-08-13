@@ -1,0 +1,163 @@
+[
+ {
+  "pdf": "garciaruiz2025_field_strength_sex_age_kidney.pdf",
+  "page": 4,
+  "phrases": [
+   "or lower than mean \u00b1 2 standard deviation (SD)) and discarded."
+  ]
+ },
+ {
+  "pdf": "nery2019_paediatric_ckd_3dgrase_motion_correction.pdf",
+  "page": 3,
+  "phrases": [
+   "strategy is to weight the contribution of individual PWIs differently ",
+   "if temporally adjacent measurements exist, leading to rejection of the"
+  ]
+ },
+ {
+  "pdf": "nery2019_paediatric_ckd_3dgrase_motion_correction.pdf",
+  "page": 11,
+  "phrases": [
+   "have shown that automatic threshold\u2010free weighted averaging methods ca"
+  ]
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrases": [
+   "An international panel of 23 renal ASL experts followed a modified Delphi process",
+   "Fifty-nine statements achieved consensus, while agreement could not be reached on two statements",
+   "inversion recovery (FAIR) labelling with a single-slice spin-echo EPI readout with background suppression and a simple",
+   "This approach is considered robust and reproducible and can provide renal perfusion images of adequate quality",
+   "An international panel of 23 renal ASL experts followed a modified Delphi process",
+   "Fifty-nine statements achieved consensus, while agreement could not be reached on two statements",
+   "As a default protocol, the panel recommends pseudo-continuous (PCASL) or flow-sensitive alternating",
+   "inversion recovery (FAIR) labelling with a single-slice spin-echo EPI readout with background suppression and a simple",
+   "This approach is considered robust and reproducible and can provide renal perfusion images of adequate quality"
+  ]
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 7,
+  "phrases": [
+   "4.7 In single-TI acquisitions, a minimum of 20 ASL pairs is recommended",
+   "4.7 In single-TI acquisitions, a minimum of 20 ASL pairs is recommended",
+   "5.12 In single-PLD acquisitions, a minimum of 20 ASL pairs is recommended",
+   "6.4 Spin-echo EPI is the preferred readout for 2D single-slice acquisitions"
+  ]
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrases": [
+   "10.1 Cortical renal blood flow values (not whole-kidney) should be reported, separately for left and right kidney",
+   "10.2 Medullary renal blood flow values are not considered reliable with current measurement approaches",
+   "9.8 Labeling efficiency PCASL = 85% (neglecting background suppression loss)",
+   "7.4 Renal ASL scans under free breathing are preferred",
+   "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+   "7.4 Renal ASL scans under free breathing are preferred",
+   "7.5 Respiratory triggering can be advantageous to minimize the effects of kidney motion at the expense of scan",
+   "8.2 Outlier rejection is recommended for renal ASL",
+   "10.1 Cortical renal blood flow values (not whole-kidney) should be reported, separately for left and right kidney",
+   "10.2 Medullary renal blood flow values are not considered reliable with current measurement approaches",
+   "9.8 Labeling efficiency PCASL = 85% (neglecting background suppression loss)",
+   "9.7 Labeling efficiency PASL = 95% (neglecting background suppression loss)",
+   "7.4 Renal ASL scans under free breathing are preferred",
+   "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+   "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+   "7.4 Renal ASL scans under free breathing are preferred",
+   "7.5 Respiratory triggering can be advantageous to minimize the effects of kidney motion at the expense of scan",
+   "8.2 Outlier rejection is recommended for renal ASL"
+  ]
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrases": [
+   "order of magnitude larger than the typical ASL voxel size,",
+   "order of magnitude larger than the typical ASL voxel size,",
+   "Outlier rejection methods, including retrospective sorting of renal ASL data, have relied on manual",
+   "Subject breathing induces kidney displacements up to an",
+   "order of magnitude larger than the typical ASL voxel size,",
+   "order of magnitude larger than the typical ASL voxel size,",
+   "Outlier rejection methods, including retrospective sorting of renal ASL data, have relied on manual"
+  ]
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 13,
+  "phrases": [
+   "labelling or BGS and using a similar readout and acquisition parameters, with the exception that a long TR should",
+   "be used. If this image is acquired without waiting for a sufficiently (> 5 s) long recovery time (TR), the SIPD should",
+   "labelling or BGS and using a similar readout and acquisition parameters, with the exception that a long TR should",
+   "be used. If this image is acquired without waiting for a sufficiently (> 5 s) long recovery time (TR), the SIPD should"
+  ]
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 1,
+  "phrases": [
+   "reviews renal perfusion data in 53 studies published in"
+  ]
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrases": [
+   "Renal cortical perfusion by ASL ranged from 139 to",
+   "427 mL/100 g/min in healthy volunteers and from 83 to",
+   "Renal cortical perfusion by ASL ranged from 139 to",
+   "427 mL/100 g/min in healthy volunteers and from 83 to",
+   "412 mL/100 g/min in a broad range of patient groups"
+  ]
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrases": [
+   "cortical perfusion had moderate to good short-term reproducibility in the",
+   "same visit [intraclass correlation (ICC) 0.62\u20130.98; coefficient of",
+   "variation (CV) 3\u201318%] and between different visits (ICC 0.85\u2013",
+   "0.97; CV 4\u201313%). Ensuring reproducibility of medullary perfusion measurements",
+   "reproducible both within visits (ICC 0.27\u20130.94; CV 3\u201343%)",
+   "cortical perfusion had moderate to good short-term reproducibility in the",
+   "same visit [intraclass correlation (ICC) 0.62\u20130.98; coefficient of",
+   "variation (CV) 3\u201318%] and between different visits (ICC 0.85\u2013",
+   "0.97; CV 4\u201313%). Ensuring reproducibility of medullary perfusion measurements",
+   "reproducible both within visits (ICC 0.27\u20130.94; CV 3\u201343%)",
+   "Within-subject reproducibility of perfusion by renal ASL in 17 studies is summarized"
+  ]
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrases": [
+   "range of reported renal cortical perfusion values ranging from",
+   "(139\u2013427 mL/100 g/min) in healthy volunteers",
+   "time of this review, there are no published studies comparing",
+   "or under different labelling approaches. Similarly, we found no",
+   "studies of reproducibility between centres.",
+   "range of reported renal cortical perfusion values ranging from",
+   "(139\u2013427 mL/100 g/min) in healthy volunteers",
+   "time of this review, there are no published studies comparing",
+   "or under different labelling approaches. Similarly, we found no",
+   "studies of reproducibility between centres.",
+   "Supplementary data, Table S1 shows the",
+   "and between visits (ICC 0.13\u20130.96; 4\u201337%)"
+  ]
+ },
+ {
+  "pdf": "siva2013_kidney_motion_4dct.pdf",
+  "page": 1,
+  "phrases": [
+   "displacement of the left and right kidneys was 0.74 cm (0.45-0.98 cm)"
+  ]
+ },
+ {
+  "pdf": "yamashita2014_renal_motion_4dct.pdf",
+  "page": 1,
+  "phrases": [
+   "of movement of the center of gravity for all subjects was 11.1 +/- 4.8"
+  ]
+ }
+]

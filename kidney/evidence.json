@@ -1,0 +1,541 @@
+[
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "range of reported renal cortical perfusion values ranging from",
+  "supports": "The 139–427 mL/100 g/min healthy cortical perfusion range is a review-level literature span, not one study's measurement.",
+  "why": "Establishes the provenance of the headline number as a 53-study systematic-review range sourced to Supplementary Table S1, which is the honest label to put on it."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "(139–427 mL/100 g/min) in healthy volunteers",
+  "supports": "The exact published range of healthy cortical perfusion: 139–427 mL/100 g/min.",
+  "why": "This is the single verbatim sentence carrying the number the kidney docs quote, and it appears in no other paper in the library."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrase": "Renal cortical perfusion by ASL ranged from 139 to",
+  "supports": "The same 139–427 range restated independently in the Results section, not only in the Healthy Volunteers section.",
+  "why": "Two independent statements in the same paper means the figure is not a typo in one sentence, which is the first thing a reviewer checks."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrase": "427 mL/100 g/min in healthy volunteers and from 83 to",
+  "supports": "Healthy (139–427) and patient (83–412) cortical perfusion ranges overlap almost completely.",
+  "why": "Kills any plan to gate CBF-map quality on absolute cortical perfusion: a 'healthy' value and a 'diseased' value are indistinguishable across 83–427."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "cortical perfusion had moderate to good short-term reproducibility in the",
+  "supports": "Renal ASL cortical reproducibility is characterised as moderate-to-good, aggregated over 17 studies.",
+  "why": "This is the review's own verdict sentence on reproducibility, and the framing ('moderate to good') is deliberately hedged, not a clean pass."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "same visit [intraclass correlation (ICC) 0.62–0.98; coefficient of",
+  "supports": "Intravisit cortical reproducibility spans ICC 0.62–0.98 across the literature.",
+  "why": "An ICC floor of 0.62 within a single visit sets the ceiling on how tight any renal repeatability-based QC threshold could ever be."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "variation (CV) 3–18%] and between different visits (ICC 0.85–",
+  "supports": "Intravisit cortical coefficient of variation spans 3–18%.",
+  "why": "A 6-fold spread in published cortical CV is the direct evidence that no single CoV cut-off can be adopted from the literature."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "0.97; CV 4–13%). Ensuring reproducibility of medullary perfusion measurements",
+  "supports": "Intervisit cortical reproducibility: ICC 0.85–0.97, CV 4–13%.",
+  "why": "Completes the cortical reproducibility picture and shows intervisit CV is no worse than intravisit, which is counterintuitive and worth flagging."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "reproducible both within visits (ICC 0.27–0.94; CV 3–43%)",
+  "supports": "Medullary perfusion is substantially less reproducible than cortical (ICC down to 0.27, CV up to 43%).",
+  "why": "Independent quantitative backing for consensus R10.2 and for demoting the cortex:medulla ratio from a perfusion verdict to a segmentation-integrity flag."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "time of this review, there are no published studies comparing",
+  "supports": "No head-to-head reproducibility comparison exists across field strengths or labelling schemes.",
+  "why": "This is the core justification for shipping every renal CBF-map threshold UNCALIBRATED: the comparative data a threshold would need does not exist."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "or under different labelling approaches. Similarly, we found no",
+  "supports": "The gap explicitly covers labelling approach, i.e. FAIR vs pCASL reproducibility has never been compared across the literature.",
+  "why": "Directly connects the calibration gap to the labelling-scheme problem, which is the same axis on which the 362-vs-201 discrepancy sits."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "studies of reproducibility between centres.",
+  "supports": "There are zero multi-centre renal ASL reproducibility studies.",
+  "why": "A QC toolbox aimed at multi-centre triage has no published multi-centre variance to anchor against, which must be stated up front to the mentors."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "An international panel of 23 renal ASL experts followed a modified Delphi process",
+  "supports": "Nery 2020 is a formal consensus/recommendation document — the renal equivalent of the 2015 ASL White Paper — not a primary study.",
+  "why": "Establishes the evidentiary status of every Stream A conformance rule we derive: these are expert-consensus recommendations, not measured thresholds."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "Fifty-nine statements achieved consensus, while agreement could not be reached on two statements",
+  "supports": "The document contains exactly 59 consensus statements (plus 2 that failed consensus, both on patient dietary preparation).",
+  "why": "Pins the '59 consensus statements' number we quote everywhere and shows the only failures were dietary, i.e. nothing technical was left unresolved."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "inversion recovery (FAIR) labelling with a single-slice spin-echo EPI readout with background suppression and a simple",
+  "supports": "Default recommended protocol = PCASL or FAIR labelling + single-slice SE-EPI readout + background suppression + simple quantification model.",
+  "why": "This one sentence is the backbone of our renal Stream A protocol-conformance check (labelling scheme, readout, BGS all in one)."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "This approach is considered robust and reproducible and can provide renal perfusion images of adequate quality",
+  "supports": "The closest the consensus comes to an image-quality statement is the purely qualitative phrase 'adequate quality and SNR' — no number is attached.",
+  "why": "This is the central negative finding: the renal consensus specifies quality only in words, which is exactly why every Stream B renal threshold must ship UNCALIBRATED."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 7,
+  "phrase": "4.7 In single-TI acquisitions, a minimum of 20 ASL pairs is recommended",
+  "supports": "Averaging guidance: a minimum of 20 control/label ASL pairs (R4.7 for FAIR, 89% agreement; identically R5.12 for PCASL, 83% agreement).",
+  "why": "Gives us a hard, checkable pair-count rule for the renal volume-count check — the renal analogue of a brain 'enough repeats' test."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "10.1 Cortical renal blood flow values (not whole-kidney) should be reported, separately for left and right kidney",
+  "supports": "R10.1 verbatim — report CORTICAL RBF, not whole-kidney, and separately per kidney. Agreement 100%, abstentions 0%.",
+  "why": "Settles the ROI question outright at unanimous agreement: our CBF-level check must be cortex-only and must emit left and right kidney separately, never a single whole-organ number."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "10.2 Medullary renal blood flow values are not considered reliable with current measurement approaches",
+  "supports": "R10.2 verbatim — medullary RBF is not reliable with current methods. Agreement 89%, abstentions 14%.",
+  "why": "This is why the cortex:medulla ratio can only be a segmentation-integrity flag in our design, never a perfusion verdict — the consensus says the medullary number itself cannot be trusted."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "9.8 Labeling efficiency PCASL = 85% (neglecting background suppression loss)",
+  "supports": "Recommended labelling efficiency alpha: PCASL = 85% (R9.8, 86% agreement); PASL = 95% (R9.7, 100% agreement, same page).",
+  "why": "Fixes the alpha constants our renal quantification-metadata check validates against, and shows renal PCASL reuses the brain White Paper's 0.85."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.4 Renal ASL scans under free breathing are preferred",
+  "supports": "Breathing strategy: free breathing is preferred (R7.4) and breath-hold is NOT recommended for clinical renal ASL (R7.3, 94% agreement).",
+  "why": "R7.4 carries only 76% agreement — the lowest of all 59 statements, barely over the 75% consensus bar — so our breathing-strategy check should WARN, not FAIL, on deviation."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "order of magnitude larger than the typical ASL voxel size,",
+  "supports": "Respiratory motion is the dominant renal artefact: breathing displaces the kidneys by up to an order of magnitude more than one ASL voxel.",
+  "why": "Quantifies (in voxels, the only number the paper gives for motion) why renal QC needs a motion stream with no brain analogue — brain head motion is sub-voxel by comparison."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 13,
+  "phrase": "labelling or BGS and using a similar readout and acquisition parameters, with the exception that a long TR should",
+  "supports": "M0/PD calibration image must be acquired WITHOUT labelling and WITHOUT background suppression, matched readout, long TR.",
+  "why": "Confirms the brain rule 'BGS off for M0' transfers verbatim to kidney, so our existing M0 check migrates unchanged — and the renal consensus states it explicitly."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 13,
+  "phrase": "be used. If this image is acquired without waiting for a sufficiently (> 5 s) long recovery time (TR), the SIPD should",
+  "supports": "M0 TR rule: >5 s recovery; if shorter, correct SI_PD for incomplete relaxation via 1/(1-exp(-TR/T1,tissue)).",
+  "why": "The renal consensus reproduces the brain White Paper's ~5 s M0 TR threshold AND its correctability, so this is a WARN-with-correction check in kidney exactly as in brain."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "order of magnitude larger than the typical ASL voxel size,",
+  "supports": "Respiratory motion is the dominant renal ASL artefact and has no brain analogue; kidney displacement dwarfs the voxel.",
+  "why": "This is the consensus's own statement of the problem's scale, and it is stated as a ratio to voxel size rather than in mm, which is exactly why a fixed-mm motion threshold cannot be lifted from the consensus."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+  "supports": "Breathing strategies: breath-hold is explicitly NOT recommended for clinical renal ASL.",
+  "why": "A hard, quotable protocol-conformance rule for Stream A - a breath-hold acquisition is a consensus deviation (94% agreement, 0% abstentions in Table 2)."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.4 Renal ASL scans under free breathing are preferred",
+  "supports": "Breathing strategies: free breathing is the recommended default.",
+  "why": "Names the recommended strategy, but at only 76% agreement - the weakest breathing-related consensus in Table 2, so the QC design should flag rather than fail deviations."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.5 Respiratory triggering can be advantageous to minimize the effects of kidney motion at the expense of scan",
+  "supports": "Breathing strategies: respiratory triggering is an endorsed option, with a stated scan-time cost.",
+  "why": "95% agreement makes triggering the strongest-supported motion-mitigation option, and confirms free-breathing-plus-triggering is a conformant protocol, not a deviation."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "8.2 Outlier rejection is recommended for renal ASL",
+  "supports": "Outlier rejection is a consensus recommendation for renal ASL (Stream A preprocessing).",
+  "why": "100% agreement with 0% abstentions - the strongest possible consensus, and yet no numeric rule is attached anywhere in the paper, which is the whole justification for shipping renal thresholds uncalibrated."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "Outlier rejection methods, including retrospective sorting of renal ASL data, have relied on manual",
+  "supports": "The consensus recommends outlier rejection but specifies no algorithm or threshold - only that manual and automatic approaches exist.",
+  "why": "This is the sentence that proves the gap: the consensus endorses the practice and then points at the literature, so any implementable rule must be sourced from primary papers, not from R8.2 itself."
+ },
+ {
+  "pdf": "nery2019_paediatric_ckd_3dgrase_motion_correction.pdf",
+  "page": 3,
+  "phrase": "strategy is to weight the contribution of individual PWIs differently according to “noise” estimates derived from the ASL",
+  "supports": "The one genuinely implementable published rule family for renal subtraction-outlier handling: data-derived per-pair noise weighting (DVARS / MVARS), not hard rejection.",
+  "why": "Nery 2019 gives the full equations (w_p = 1/(c*eps_p), Eqs 1-6) for a renal-specific, fully automatic per-control-label-pair quality weight - directly portable into the toolbox."
+ },
+ {
+  "pdf": "nery2019_paediatric_ckd_3dgrase_motion_correction.pdf",
+  "page": 3,
+  "phrase": "if temporally adjacent measurements exist, leading to rejection of the first and last PWIs regardless of whether they are",
+  "supports": "The brain-derived DVARS weighting has a concrete, quotable failure mode in renal ASL: it discards the first and last perfusion-weighted image unconditionally.",
+  "why": "This is the documented reason the renal community moved from the brain DVARS metric to MVARS, and it matters because renal protocols acquire far fewer pairs than brain, so losing two is expensive."
+ },
+ {
+  "pdf": "nery2019_paediatric_ckd_3dgrase_motion_correction.pdf",
+  "page": 11,
+  "phrase": "have shown that automatic threshold‐free weighted averaging methods can reduce the deleterious effects of corrupted",
+  "supports": "The published renal outlier-handling rule is explicitly THRESHOLD-FREE - it downweights rather than applying a numeric cutoff.",
+  "why": "Settles the design question directly: the literature offers a computable per-pair weight, not a PASS/WARN/FAIL cutoff, so any renal motion verdict boundary the toolbox draws is ours and must be labelled uncalibrated."
+ },
+ {
+  "pdf": "yamashita2014_renal_motion_4dct.pdf",
+  "page": 1,
+  "phrase": "of movement of the center of gravity for all subjects was 11.1 +/- 4.8 mm",
+  "supports": "How much the kidney moves with respiration, in mm: 11.1 +/- 4.8 mm cranio-caudal (4DCT).",
+  "why": "The only hard mm figure for renal respiratory displacement in this library, and at ~11 mm against a 2-4 mm recommended in-plane resolution it independently confirms the consensus's order-of-magnitude claim."
+ },
+ {
+  "pdf": "siva2013_kidney_motion_4dct.pdf",
+  "page": 1,
+  "phrase": "displacement of the left and right kidneys was 0.74 cm (0.45-0.98 cm)",
+  "supports": "Second, independent 4DCT estimate of respiratory kidney displacement (Siva 2013, the study the Nery 2020 consensus cites) - and the parenthetical is the INTERQUARTILE range, not the observed range.",
+  "why": "It disagrees with Yamashita (mean apex 7.4 mm vs mean centre-of-gravity 11.1 mm) - and its 0.45-0.98 cm is an IQR; the true range in the body text is 0.10-2.15 cm. Both facts matter: the motion-magnitude literature is not converged, so a mm-based renal motion threshold has no single anchor."
+ },
+ {
+  "pdf": "garciaruiz2025_field_strength_sex_age_kidney.pdf",
+  "page": 4,
+  "phrase": "or lower than mean ± 2 standard deviation (SD)) and discarded.",
+  "supports": "A published, numeric, directly implementable outlier-rejection rule for renal ASL control-label pairs - from a primary study, NOT from the consensus.",
+  "why": "One of only two explicit numeric renal pair-rejection criteria in the corpus (the other is echeverriachasco2023 p.5) - mean +/- 2 SD on the per-pair cortical perfusion time series - implementable today, but it is one group's method choice. Nery 2020 states no outlier threshold anywhere; do not attribute this sentence to the consensus."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "range of reported renal cortical perfusion values ranging from",
+  "supports": "The 139-427 mL/100 g/min healthy cortical perfusion range is a review-level literature span, not one study's measurement.",
+  "why": "VERIFIED (grep match, p4, unique). Caveat: the 'Table S1' attribution sits on the immediately preceding text-layer line, so it is shipped as a separate quote below rather than folded into this phrase."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "(139–427 mL/100 g/min) in healthy volunteers",
+  "supports": "The exact published range of healthy cortical perfusion: 139-427 mL/100 g/min.",
+  "why": "VERIFIED (grep match, p4, unique). This is the single verbatim sentence carrying the headline number the kidney docs quote."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrase": "Renal cortical perfusion by ASL ranged from 139 to",
+  "supports": "The same 139-427 range restated independently in the Results section, not only in the Healthy Volunteers section.",
+  "why": "VERIFIED (grep match, p2, unique). Two statements of the figure in the same paper is the first thing a reviewer checks for a transcription error."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrase": "427 mL/100 g/min in healthy volunteers and from 83 to",
+  "supports": "Healthy (139-427) and patient (83-412) cortical perfusion ranges overlap almost completely.",
+  "why": "VERIFIED (grep match, p2, unique). Note the '412' upper bound falls on the next text-layer line, so the patient endpoint ships as its own quote below."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "cortical perfusion had moderate to good short-term reproducibility in the",
+  "supports": "Renal ASL cortical reproducibility is characterised by the review as moderate-to-good.",
+  "why": "VERIFIED (grep match, p3, unique). The review's own hedged verdict sentence; the '17 studies' denominator is a separate sentence and ships as its own quote below."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "same visit [intraclass correlation (ICC) 0.62–0.98; coefficient of",
+  "supports": "Intravisit cortical reproducibility spans ICC 0.62-0.98 across the literature.",
+  "why": "VERIFIED (grep match, p3, unique). An ICC floor of 0.62 within a single visit caps how tight any renal repeatability-based QC threshold could ever be."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "variation (CV) 3–18%] and between different visits (ICC 0.85–",
+  "supports": "Intravisit cortical coefficient of variation spans 3-18%.",
+  "why": "VERIFIED (grep match, p3, unique). A 6-fold spread in published cortical CV is direct evidence that no single CoV cut-off can be lifted from the literature."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "0.97; CV 4–13%). Ensuring reproducibility of medullary perfusion measurements",
+  "supports": "Intervisit cortical reproducibility: ICC 0.85-0.97, CV 4-13%.",
+  "why": "VERIFIED (grep match, p3, unique). Completes the cortical picture and shows intervisit CV is no worse than intravisit, which is counterintuitive and worth flagging."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "reproducible both within visits (ICC 0.27–0.94; CV 3–43%)",
+  "supports": "Medullary perfusion is substantially less reproducible than cortical (ICC down to 0.27, CV up to 43%).",
+  "why": "VERIFIED (grep match, p3, unique). Independent quantitative backing for Nery consensus R10.2 and for demoting cortex:medulla ratio to a segmentation-integrity flag."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "time of this review, there are no published studies comparing",
+  "supports": "No head-to-head reproducibility comparison exists across field strengths or labelling schemes.",
+  "why": "VERIFIED (grep match, p4, unique). Incomplete on its own - the objects of 'comparing' are on the next line, supplied by the adjacent quote; ship the two together."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "or under different labelling approaches. Similarly, we found no",
+  "supports": "The reproducibility gap explicitly covers labelling approach: FAIR vs pCASL reproducibility had never been compared as of the 4 Jan 2018 literature search.",
+  "why": "VERIFIED (grep match, p4, unique). Scope correction: the paper says no comparison of REPRODUCIBILITY, not of mean perfusion - FAIR-vs-pCASL mean values were compared later (Harteveld 2020), so do not over-read this."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "studies of reproducibility between centres.",
+  "supports": "There were zero multi-centre renal ASL reproducibility studies as of the January 2018 search.",
+  "why": "VERIFIED (grep match, p4, unique). Must carry the 2018 date stamp - later multi-centre/test-retest work exists in the library, so an undated 'zero multi-centre studies' claim would be stretched."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "Supplementary data, Table S1 shows the",
+  "supports": "The 139-427 range is sourced to Supplementary Table S1, i.e. it is an aggregation over the included studies, not a primary measurement.",
+  "why": "ADDED + VERIFIED (grep match, p4, unique). Supplies the Table S1 provenance that claimed quote 1 asserted but did not itself contain."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 2,
+  "phrase": "412 mL/100 g/min in a broad range of patient groups",
+  "supports": "Patient cortical perfusion spans 83-412 mL/100 g/min, overlapping the healthy 139-427 range almost entirely.",
+  "why": "ADDED + VERIFIED (grep match, p2, unique). Supplies the 412 upper bound that claimed quote 4 asserted but did not itself contain - without it the patient range is unsourced."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 3,
+  "phrase": "Within-subject reproducibility of perfusion by renal ASL in 17 studies is summarized",
+  "supports": "The moderate-to-good cortical reproducibility verdict is aggregated over 17 studies.",
+  "why": "ADDED + VERIFIED (grep match, p3, unique). Supplies the '17 studies' denominator that claimed quote 5 asserted but did not itself contain."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 1,
+  "phrase": "reviews renal perfusion data in 53 studies published in",
+  "supports": "Odudu 2018 is a PARENCHIMA systematic review over 53 studies through January 2018.",
+  "why": "ADDED + VERIFIED (grep match, p1, unique). Sources the '53-study' framing used in the kidney docs and date-stamps every 'no published studies' gap claim in this paper."
+ },
+ {
+  "pdf": "odudu2018_renal_asl_systematic_review.pdf",
+  "page": 4,
+  "phrase": "and between visits (ICC 0.13–0.96; 4–37%)",
+  "supports": "Medullary intervisit reproducibility spans ICC 0.13-0.96, CV 4-37%.",
+  "why": "ADDED + VERIFIED (grep match, p4, unique). The medullary intervisit half of the sentence begun on p3 - an ICC as low as 0.13 is the strongest single number against treating medullary RBF as a perfusion verdict."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "An international panel of 23 renal ASL experts followed a modified Delphi process",
+  "supports": "Nery 2020 is a formal consensus/recommendation document — the renal equivalent of the 2015 ASL White Paper — not a primary study.",
+  "why": "Establishes the evidentiary status of every Stream A conformance rule we derive: these are expert-consensus recommendations, not measured thresholds."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "Fifty-nine statements achieved consensus, while agreement could not be reached on two statements",
+  "supports": "The document contains exactly 59 consensus statements (plus 2 that failed consensus, both on patient dietary preparation).",
+  "why": "Pins the '59 consensus statements' number we quote everywhere; independently corroborated by counting Table 2, which has exactly 59 numbered statement rows."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "As a default protocol, the panel recommends pseudo-continuous (PCASL) or flow-sensitive alternating",
+  "supports": "Default recommended labelling = PCASL or FAIR (this is the first half of the sentence; the claimed quote began mid-sentence and dropped 'PCASL').",
+  "why": "Without this line the protocol quote never names PCASL, so the labelling-scheme half of our Stream A conformance check would be uncited."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "inversion recovery (FAIR) labelling with a single-slice spin-echo EPI readout with background suppression and a simple",
+  "supports": "Default recommended protocol continues: FAIR labelling + single-slice SE-EPI readout + background suppression + simple quantification model.",
+  "why": "This is the backbone of our renal Stream A protocol-conformance check (readout and BGS in one line); pair it with the preceding line for the PCASL half."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 1,
+  "phrase": "This approach is considered robust and reproducible and can provide renal perfusion images of adequate quality",
+  "supports": "The closest the consensus comes to an image-quality statement is the purely qualitative wording 'adequate quality and SNR' — no number is attached.",
+  "why": "The central negative finding: the renal consensus specifies quality only in words, which is why every Stream B renal threshold must ship UNCALIBRATED. Note the words 'and SNR' wrap onto the next line, so only 'adequate quality' is in this phrase."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 7,
+  "phrase": "4.7 In single-TI acquisitions, a minimum of 20 ASL pairs is recommended",
+  "supports": "Averaging guidance for FAIR: minimum 20 control/label ASL pairs. Table 2 row R4.7 reads abstentions 10%, agreement 89%.",
+  "why": "Gives us a hard, checkable pair-count rule for the renal volume-count check — the renal analogue of a brain 'enough repeats' test."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 7,
+  "phrase": "5.12 In single-PLD acquisitions, a minimum of 20 ASL pairs is recommended",
+  "supports": "The PCASL twin of R4.7, worded identically except TI→PLD. Table 2 row R5.12 reads abstentions 14%, agreement 83%.",
+  "why": "Confirms the 20-pair minimum is labelling-scheme-independent, so our pair-count check can apply one rule to both FAIR and PCASL renal data. NOTE: R5.12 is on page 7, not page 8."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 7,
+  "phrase": "6.4 Spin-echo EPI is the preferred readout for 2D single-slice acquisitions",
+  "supports": "R6.4 carries 75% agreement (abstentions 5%) — the LOWEST agreement of all 59 statements, sitting exactly on the inclusive 75% consensus bar.",
+  "why": "Corrects a factual error in our notes: R7.4 (76%) is NOT the weakest statement, R6.4 (75%) is. Our readout-conformance check is therefore resting on the single most marginal consensus in the paper and must WARN, never FAIL."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "10.1 Cortical renal blood flow values (not whole-kidney) should be reported, separately for left and right kidney",
+  "supports": "R10.1 verbatim — report CORTICAL RBF, not whole-kidney, and separately per kidney. Table 2 confirms agreement 100%, abstentions 0%.",
+  "why": "Settles the ROI question at unanimous agreement with zero abstentions: our CBF-level check must be cortex-only and emit left and right kidney separately, never a single whole-organ number."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "10.2 Medullary renal blood flow values are not considered reliable with current measurement approaches",
+  "supports": "R10.2 verbatim — medullary RBF is not reliable with current methods. Table 2 confirms agreement 89%, abstentions 14%.",
+  "why": "This is why the cortex:medulla ratio can only be a segmentation-integrity flag in our design, never a perfusion verdict — the consensus says the medullary number itself cannot be trusted."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "9.8 Labeling efficiency PCASL = 85% (neglecting background suppression loss)",
+  "supports": "Recommended labelling efficiency alpha for PCASL = 85%. Table 2 confirms agreement 86%, abstentions 13%.",
+  "why": "Fixes the alpha constant our renal quantification-metadata check validates against, and shows renal PCASL reuses the brain White Paper's 0.85."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "9.7 Labeling efficiency PASL = 95% (neglecting background suppression loss)",
+  "supports": "Recommended labelling efficiency alpha for PASL = 95%. Table 2 confirms agreement 100%, abstentions 6%.",
+  "why": "The PASL half of the alpha pair, on the same page and at full agreement; note renal PASL uses 0.95, NOT the brain White Paper's 0.98, so this constant does not migrate unchanged."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.4 Renal ASL scans under free breathing are preferred",
+  "supports": "Breathing strategy: free breathing is preferred. Table 2 confirms agreement 76%, abstentions 0%.",
+  "why": "At 76% this is the SECOND-weakest of the 59 statements (R6.4 at 75% is weakest), only one point over the inclusive consensus bar — so our breathing-strategy check should WARN, not FAIL, on deviation."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+  "supports": "Breath-hold is explicitly NOT recommended for clinical renal ASL. Table 2 confirms agreement 94%, abstentions 0%.",
+  "why": "Much stronger consensus (94%) than the free-breathing preference (76%), so detecting a breath-hold acquisition is a firmer basis for a flag than the absence of free breathing is."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "Subject breathing induces kidney displacements up to an",
+  "supports": "Supplies the subject of the motion sentence — it is subject breathing that displaces the kidneys (the claimed fragment alone never says what moves).",
+  "why": "Without this line the motion quote is a dangling fragment that a reviewer cannot attribute; together the two lines carry the only motion magnitude the paper gives."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "order of magnitude larger than the typical ASL voxel size,",
+  "supports": "Respiratory motion is the dominant renal artefact: breathing displaces the kidneys by up to an order of magnitude more than one ASL voxel.",
+  "why": "Quantifies (in voxels — the only motion number the paper gives) why renal QC needs a motion stream with no brain analogue; the paper continues that unaccounted-for motion causes 'a significant loss of image quality'."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 13,
+  "phrase": "labelling or BGS and using a similar readout and acquisition parameters, with the exception that a long TR should",
+  "supports": "M0/PD calibration image must be acquired WITHOUT labelling and WITHOUT background suppression, matched readout, long TR.",
+  "why": "Confirms the brain rule 'BGS off for M0' transfers verbatim to kidney, so our existing M0 check migrates unchanged — and the renal consensus states it explicitly."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 13,
+  "phrase": "be used. If this image is acquired without waiting for a sufficiently (> 5 s) long recovery time (TR), the SIPD should",
+  "supports": "M0 TR rule: >5 s recovery; if shorter, correct SI_PD for incomplete relaxation. Equation (3) on the same page gives SIPD,corr = SIPD / (1 - exp(-TR/T1,tissue)).",
+  "why": "The renal consensus reproduces the brain White Paper's ~5 s M0 TR threshold AND its correctability, so this is a WARN-with-correction check in kidney exactly as in brain."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "order of magnitude larger than the typical ASL voxel size,",
+  "supports": "Respiratory motion is the dominant renal ASL artefact and has no brain analogue; kidney displacement dwarfs the voxel.",
+  "why": "The consensus states the problem's scale as a RATIO to voxel size, never in mm, which is exactly why no fixed-mm renal motion threshold can be lifted from it. Full sentence: 'Subject breathing induces kidney displacements up to an order of magnitude larger than the typical ASL voxel size, which if unaccounted for cause a significant loss of image quality in ASL.'"
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.3 Breath-hold scans are not recommended for clinical renal ASL",
+  "supports": "Breathing strategies: breath-hold is explicitly NOT recommended for clinical renal ASL.",
+  "why": "A hard, quotable Stream-A protocol-conformance rule; the Table 2 numeric columns on the same page read 0% abstentions / 94% agreement, confirmed via `pdftotext -layout`."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.4 Renal ASL scans under free breathing are preferred",
+  "supports": "Breathing strategies: free breathing is the recommended default.",
+  "why": "Table 2 gives it 0% abstentions but only 76% agreement, the weakest of the three breathing statements (7.3=94, 7.4=76, 7.5=95), so the QC design should WARN rather than FAIL on deviations."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "7.5 Respiratory triggering can be advantageous to minimize the effects of kidney motion at the expense of scan",
+  "supports": "Breathing strategies: respiratory triggering is an endorsed option, with a stated scan-time cost.",
+  "why": "At 95% agreement (5% abstentions) it is the best-supported acquisition-side motion-mitigation option, confirming free-breathing-plus-triggering is conformant, not a deviation. (Note: retrospective registration R8.1 scores higher still at 100%, so do not call triggering the strongest motion mitigation overall.)"
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 8,
+  "phrase": "8.2 Outlier rejection is recommended for renal ASL",
+  "supports": "Outlier rejection is a consensus recommendation for renal ASL (Stream A preprocessing).",
+  "why": "100% agreement with 0% abstentions - the only Table 2 statement in the preprocessing/quantification block with both - and yet no numeric rule is attached anywhere in the 21-page paper, which is the whole justification for shipping renal thresholds uncalibrated."
+ },
+ {
+  "pdf": "nery2020_renal_asl_consensus.pdf",
+  "page": 12,
+  "phrase": "Outlier rejection methods, including retrospective sorting of renal ASL data, have relied on manual",
+  "supports": "The consensus recommends outlier rejection but specifies no algorithm or threshold - only that manual and automatic approaches exist.",
+  "why": "This is the sentence that proves the gap: the body text backing R8.2 cites manual [44,56,62], automatic [18,58] and bellows-based [55,63] approaches and stops there, so any implementable rule must be sourced from primary papers, not from R8.2 itself."
+ }
+]
