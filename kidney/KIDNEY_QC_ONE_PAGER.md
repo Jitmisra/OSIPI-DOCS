@@ -22,9 +22,10 @@ everything below.
 > Paper — 59 consensus statements, and I read every one. It contains **zero numeric quality
 > thresholds.** No tSNR cutoff, no CoV cutoff, no motion limit, no QEI equivalent.
 >
-> So it gives us a hard, quotable **protocol-conformance spec** (Stream A) and **nothing at all**
-> for judging image quality (Stream B). Every renal CBF-map threshold we ship must be labelled
-> **UNCALIBRATED**. That is a publishable statement about the field, not a gap in our work.
+> So the published material is all about *how to acquire* the scan, and none of it is about
+> *whether the map is good*. v1 grades the map and leaves protocol conformance out of scope, which
+> means every threshold we ship is labelled **UNCALIBRATED**. That is a publishable statement about
+> the field, not a gap in our work.
 
 ---
 
@@ -84,12 +85,11 @@ swapped — which is a real and useful thing to catch, just not the thing we hop
 ```mermaid
 flowchart TD
   U["Upload"] --> D{"What was provided?"}
-  D -->|"raw 4D plus M0 plus metadata"| A["STREAM A — acquisition<br/>the PUBLISHED half"]
-  D -->|"RBF map plus kidney masks"| B["STREAM B — perfusion map<br/>the UNCALIBRATED half"]
+  D -->|"raw 4D plus M0"| A["STREAM A — the acquisition<br/>as data, not as protocol"]
+  D -->|"RBF map plus kidney masks"| B["STREAM B — the perfusion map"]
   A --> K5["K5 Schema and data type"]
   A --> K6["K6 M0 calibration"]
   A --> K7["K7 Respiratory motion<br/>and outlier rejection"]
-  A --> K8["K8 Protocol conformance<br/>vs Nery 2020"]
   B --> K1["K1 Quality index<br/>DELIBERATELY EMPTY"]
   B --> K2["K2 Noise and distribution"]
   B --> K3["K3 Cortical level<br/>and cortico-medullary contrast"]
@@ -97,7 +97,6 @@ flowchart TD
   K5 --> R["Report — PASS WARN FAIL<br/>plus coverage"]
   K6 --> R
   K7 --> R
-  K8 --> R
   K1 --> R
   K2 --> R
   K3 --> R
@@ -110,16 +109,20 @@ flowchart TD
   classDef empty fill:#6e7681,color:#fff,stroke:#30363d,stroke-width:2px,stroke-dasharray:5 4;
   class U u;
   class D d;
-  class A,K5,K6,K7,K8 a;
+  class A,K5,K6,K7 a;
   class B,K2,K3,K4 b;
   class K1 empty;
   class R r;
 ```
 
-**K8 is the strongest module**, which is the reverse of the brain tool. Protocol conformance against
-Nery's 59 statements is fully published and directly checkable — labelling scheme, timings, geometry,
-readout, quantification constants. **K1 is deliberately empty**: there is no renal QEI, and inventing
-one would be the single least defensible thing we could do.
+**Protocol conformance is deliberately out of scope for v1.** Nery's 59 statements are the only
+published, directly checkable requirements in renal ASL — labelling scheme, timings, geometry, readout,
+quantification constants — and v1 does not grade any of them. That is a real cost, stated plainly: it
+leaves the design resting almost entirely on **uncalibrated** thresholds. The boundary is the same one
+the brain tool draws — grade the data, not the acquisition parameters.
+
+**K1 is deliberately empty** for a different reason: there is no renal QEI, and inventing one would be
+the single least defensible thing we could do.
 
 **K7 carries the one genuinely implementable published rule family** — subtraction-outlier rejection.
 Respiratory motion is the dominant renal artefact, and unlike the brain there is no rigid-body
@@ -140,7 +143,7 @@ because every meaningful metric is ROI-restricted and the ROIs must come from ou
 | **B3** | + medulla mask (or a T1 map) | cortex:medulla ratio, as an integrity flag only |
 | **A0** | raw 4D + kidney masks | outlier rate, respiratory displacement, control/label order |
 | **A1** | + M0 | M0 checks, perfusion signal as % of M0 |
-| **A2** | + acquisition metadata | **all of K8** — the richest published block |
+| **A2** | + acquisition metadata | four existing checks sharpen; **no new check** — v1 grades no protocol parameters |
 | **A3** | + respiratory trace | gating efficiency, motion-vs-outlier correlation |
 
 ---

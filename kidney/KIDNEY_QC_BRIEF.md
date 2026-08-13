@@ -57,7 +57,6 @@ flowchart TD
   A --> A5["K5 - Schema, data type and control-label"]
   A --> A6["K6 - M0 calibration"]
   A --> A7["K7 - Respiratory motion and outlier rejection"]
-  A --> A8["K8 - Protocol conformance vs the renal consensus"]
   B1 -.->|"no metric emitted"| R["Combined report<br/>PER KIDNEY, cortex-anchored"]
   B2 --> R
   B3 --> R
@@ -65,8 +64,7 @@ flowchart TD
   A5 --> R
   A6 --> R
   A7 --> R
-  A8 --> R
-  classDef a fill:#bc4c00,color:#fff,stroke:#5c2400,stroke-width:2px;
+    classDef a fill:#bc4c00,color:#fff,stroke:#5c2400,stroke-width:2px;
   classDef b fill:#2ea043,color:#fff,stroke:#0b3d1a,stroke-width:2px;
   classDef d fill:#f0b429,color:#111827,stroke:#7d5e0f,stroke-width:2px;
   classDef u fill:#1f6feb,color:#fff,stroke:#0a3069,stroke-width:2px;
@@ -74,7 +72,7 @@ flowchart TD
   classDef ext fill:#6e7681,color:#fff,stroke:#30363d,stroke-width:2px,stroke-dasharray:5 4;
   classDef void fill:#0d1117,color:#f0b429,stroke:#bc4c00,stroke-width:3px,stroke-dasharray:7 5;
   class U u; class D d;
-  class A,A5,A6,A7,A8 a;
+  class A,A5,A6,A7 a;
   class B,B2,B3,B4 b;
   class B1 void;
   class R r; class PIPE ext;
@@ -146,7 +144,6 @@ band" is therefore not available in kidney at any useful tightness.
 | **K7.2** | Subtraction-outlier rate, surviving-pair count | 💻 IMPLEMENTATION ×4 |
 | **K7.3** | Breathing strategy and gating efficiency | 📄 PUBLISHED |
 | **K7.4** | Spurious-labelling signature *(stretch)* | 🔧 UNCALIBRATED |
-| **K8.1–K8.4** | FAIR/PASL timing · PCASL timing and averaging · geometry and readout · quantification constants | 📄 PUBLISHED |
 
 📄 = a paper states this number for this purpose · 💻 = a reference study's code/method uses it, not a
 validated cutoff · 🔧 = engineering default, no published source · 🧮 = maths, nothing to tune.

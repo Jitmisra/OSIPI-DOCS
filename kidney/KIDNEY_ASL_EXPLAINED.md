@@ -705,9 +705,11 @@ effect in this entire document. It is the same organ, the same session, the same
 >
 > ⚠️ And note the arithmetic trap while you are here: `0.95/0.85 − 1 = 11.8%` is the ratio of the two
 > **constants**, and that is the *correction factor*, not the effect on the **map**. The effect on the
-> map is `1 − 0.85/0.95 = 10.5%`. K8.4 in the design doc makes the same distinction for every
-> constant it grades; get it wrong and every quantification-conformance number in this project reads
-> a few percent too large and, worse, sometimes in the wrong direction.
+> map is `1 − 0.85/0.95 = 10.5%`. Keep that distinction whenever you compare two studies' constants —
+> get it wrong and every constant comparison in this project reads a few percent too large and, worse,
+> sometimes in the wrong direction. Note that the QC design deliberately does **not** grade
+> quantification constants in v1, so this arithmetic is for reading the literature honestly, not for a
+> check's verdict: a map built on the wrong α passes every shipped check.
 >
 > It gets worse in practice, and this part is real: Garcia-Ruiz 2025 assumed a PCASL efficiency of
 > **0.75**, and the Taso slides quote 0.6–0.8. Every one of those choices rescales the whole map, and

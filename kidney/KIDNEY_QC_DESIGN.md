@@ -3,7 +3,7 @@
 # Kidney QC ToolBox — Renal ASL QC Design
 
 ### Automatic PASS / WARN / FAIL triage for **renal** ASL MRI
-**Two streams · 8 modules · 23 checks · per-check inputs, outputs, method, verdict, sources & provenance tier**
+**Two streams · 7 modules · 19 checks · per-check inputs, outputs, method, verdict, sources & provenance tier**
 
 </div>
 
@@ -11,8 +11,8 @@
 
 ## 🔭 Overview
 
-This is the renal counterpart to `QC_DESIGN.md`. It keeps the same shape — two streams, eight
-modules, one spec card per check — so the brain and kidney toolboxes share a registry, a result
+This is the renal counterpart to `QC_DESIGN.md`. It keeps the same shape — two streams, a module per
+topic, one spec card per check — so the brain and kidney toolboxes share a registry, a result
 type, and a report format. What it does **not** keep is the brain's evidence base.
 
 **The single most important fact about this design, and it is a negative one:** the renal ASL
@@ -34,12 +34,23 @@ That produces an inversion relative to the brain toolbox, stated plainly rather 
 
 | | Brain v1.0 | Kidney |
 |---|---|---|
-| **Stream A** (was the acquisition correct?) | thin — White Paper Table 1, a handful of rules | **rich** — ~25 consensus statements with agreement percentages |
+| **Stream A** (was the acquisition correct?) | thin — White Paper Table 1, a handful of rules | **rich in the literature** — ~25 consensus statements with agreement percentages — but v1 grades only the subset below |
 | **Stream B** (is the perfusion map good?) | **rich** — QEI with a validated ≈0.5 cutoff, sCoV 0.67, GM 40–100 | **almost empty** — no renal QEI, no renal sCoV, no published band |
 
-So the honest v1 kidney toolbox is **Stream-A-heavy**. Stream B ships real, computable metrics, but
-**every renal Stream-B threshold ships `UNCALIBRATED`**, and this document says so at every single
-one rather than manufacturing bands to look symmetrical with the brain doc.
+**And v1 does not harvest most of that Stream-A richness.** Parameter-by-parameter protocol
+conformance — the block that would have graded PLD, labelling duration, slab geometry, readout,
+resolution and quantification constants against the numbered consensus statements — is deliberately
+out of scope for v1 (see *Deliberately out of scope*, which states the cost). What survives of the
+consensus as *gradable* rules is a short list: M0 is mandatory (R9.1), M0 without background
+suppression, the 5 s M0 TR rule, outlier rejection and the 20-pair minimum, per-kidney registration,
+free breathing over breath-hold, and the Table 4 reporting set. Everything else the panel agreed is
+quoted in this document as context, not enforced.
+
+The consequence, stated plainly at the top rather than buried: the 19 shipped checks split
+10 (Stream B) / 9 (Stream A), and **every renal Stream-B threshold ships `UNCALIBRATED`** — so the
+design now rests almost entirely on uncalibrated thresholds, with a thin published spine through the
+M0 and outlier rules. This document says `UNCALIBRATED` at every single one rather than manufacturing
+bands to look symmetrical with the brain doc.
 
 ```mermaid
 flowchart TD
@@ -55,7 +66,6 @@ flowchart TD
   A --> A5["Module K5 - Schema, data type<br/>and control-label<br/>K5.1 K5.2 K5.3"]
   A --> A6["Module K6 - M0 calibration<br/>K6.1 K6.2 K6.3"]
   A --> A7["Module K7 - Respiratory motion<br/>and outlier rejection<br/>K7.1 K7.2 K7.3"]
-  A --> A8["Module K8 - Protocol conformance<br/>vs renal consensus<br/>K8.1 K8.2 K8.3 K8.4"]
   B1 --> R["Combined report<br/>per kidney, cortex-anchored"]
   B2 --> R
   B3 --> R
@@ -63,7 +73,6 @@ flowchart TD
   A5 --> R
   A6 --> R
   A7 --> R
-  A8 --> R
   classDef a fill:#bc4c00,color:#fff,stroke:#5c2400,stroke-width:2px;
   classDef b fill:#2ea043,color:#fff,stroke:#0b3d1a,stroke-width:2px;
   classDef d fill:#f0b429,color:#111827,stroke:#7d5e0f,stroke-width:2px;
@@ -71,7 +80,7 @@ flowchart TD
   classDef r fill:#1a7f37,color:#fff,stroke:#0b3d1a,stroke-width:2px;
   classDef ext fill:#6e7681,color:#fff,stroke:#30363d,stroke-width:2px,stroke-dasharray:5 4;
   class U u; class D d;
-  class A,A5,A6,A7,A8 a;
+  class A,A5,A6,A7 a;
   class B,B1,B2,B3,B4 b;
   class R r; class PIPE ext;
 ```
@@ -93,8 +102,10 @@ QC layer, light QC-grade derivation only. This is *more* important for kidney, n
 there being no renal pipeline to defer to: quantifying renal RBF ourselves would mean inheriting
 λ = 0.9 (which the consensus admits is borrowed from brain), α = 95%/85% **which must be multiplied
 by 0.93 per background-suppression pulse**, and a BGS pulse count that is rarely recorded. A QC layer
-that silently made those three choices would be grading its own arithmetic. Instead K8.4 grades the
-constants the *user* used and reports the exact rescaling factor to consensus values.
+that silently made those three choices would be grading its own arithmetic. v1 goes one step further
+and does not grade the user's constants either: K3.1 records λ, α and T1blood as reported context
+beside the value, and no check compares them against the consensus numbers. That is a real gap, and
+it is recorded as one in *Deliberately out of scope*.
 
 **Positioning inside OSIPI.** OSIPI has no renal task force, no renal lexicon section beyond three
 kidney rows in the living lexicon, no renal reporting checklist and no renal ASL datasets (TF3.2's
@@ -142,15 +153,17 @@ else UNKNOWN. `N/A`, `INFO` and `UNKNOWN` are excluded from aggregation and repo
 
 | tag | meaning | how common in this doc |
 |---|---|---|
-| 📄 **PUBLISHED** | a peer-reviewed paper states this number, for this purpose | almost all of Stream A protocol conformance (Module K8) |
+| 📄 **PUBLISHED** | a peer-reviewed paper states this number, for this purpose | rare, and concentrated in a handful of Stream A rules — the M0 statements (K6.1–K6.3), the 20-pair minimum behind K7.2, the breathing recommendations in K7.3, the Table 4 item list in K5.1 |
 | 💻 **IMPLEMENTATION** | a reference study's code or method uses it; not a validated cutoff | the outlier-rejection rules, the 0–500 clip |
 | 🔧 **UNCALIBRATED** | engineering default, no published source | **every threshold in Stream B** |
 | 🧮 **DEFINITION** | physics/maths, nothing to tune | ratios, centroids, formulas |
 
 Consensus statements are quoted **with their agreement and abstention percentages**, because they
-vary a lot and a 75% statement must not be enforced as hard as a 100% one. Highest-abstention
-warning: R5.10 (Gmax/Gave) carries **40% abstention** and the paper contradicts itself between Table 2
-and the Discussion — it is excluded from grading entirely and reported as INFO if present.
+vary a lot and a 75% statement must not be enforced as hard as a 100% one. The weakest statement any
+v1 check still leans on is R7.4 (free breathing) at **76%**, one point above the consensus bar, and it
+can only ever produce a WARN. Statements weaker or more contested than that — R5.10 (Gmax/Gave)
+carries **40% abstention** and the paper contradicts itself between Table 2 and the Discussion — sat
+in the protocol-conformance block and left v1 with it; none of them is graded here.
 
 ---
 
@@ -168,13 +181,17 @@ M0 image or a separately acquired structural dataset**, not on the perfusion map
 | **B3** | + **medulla mask per kidney** (or a quantitative T1 map to derive one) | cortex:medulla ratio as a **segmentation-integrity flag** | — |
 | **A0** | raw 4D control/label series + kidney masks | subtraction-outlier rate, per-kidney respiratory displacement, control/label ordering, surviving-pair count | everything metadata-driven |
 | **A1** | + **M0 / PD image** | M0 presence (mandatory per R9.1), ASL↔M0 registration, PWS as % of M0 | M0 TR rule |
-| **A2** | + acquisition metadata (JSON sidecar or vendor header) | **the whole of Module K8** — the richest published block in this design — plus M0 TR ≥ 5 s | — |
+| **A2** | + acquisition metadata (JSON sidecar or vendor header) | **four upgrades to checks that already ran, and no new check at all**: the M0 TR rule and its correction factors (K6.3), the M0 no-labelling / no-background-suppression flags and the M0-vs-ASL readout match (K6.2), a *confident* background-suppression state — which is the difference between K5.3 grading the control/label ordering and abstaining — and the PLD/TI without which K2.2 reports its number as INFO instead of grading it | — |
 | **A3** | + respiratory trace (`_physio.tsv.gz`) | gating efficiency | — |
 
 **Practical reading:** the highest-value single input a renal user can add is **cortex masks per
 kidney** (B1 → B2), because it unlocks the one quantity the consensus actually asks you to report.
-The highest-value *metadata* input is a JSON sidecar, because Module K8 is where nearly all the
-published thresholds live. And a quantitative **T1 map** is disproportionately valuable: it is the
+**A JSON sidecar, by contrast, is now the lowest-yield of the four Stream-A tiers** — it upgrades four
+existing checks and unlocks none. That is a direct consequence of leaving protocol conformance out of
+v1: metadata used to be the input that bought a whole module, and it no longer buys one. Stating it
+honestly matters more than making the tier look valuable, because a site being asked to export
+sidecars deserves to know how little of the verdict actually depends on them.
+And a quantitative **T1 map** is disproportionately valuable: it is the
 only contrast that reliably separates cortex from medulla, *and* it supplies the `T1,tissue` that the
 consensus M0 correction equation needs but never numerically specifies (K6.3).
 
@@ -642,8 +659,10 @@ consensus-mandated reported quantity (R10.1, 0% abst / **100%**)?
 >   consensus λ = 0.9 and 1.65 s. λ is in the numerator, so λ = 0.8 alone makes the reported map
 >   **11.1% low**; the T1b difference works the *other* way (8.5% high on its own); and omitting the
 >   ×0.93³ background-suppression correction to α — which is in the denominator — costs a further
->   19.6%. Net: **22.4% low**, a ×1.289 correction. K8.4 computes that composite explicitly, with the
->   direction, rather than leaving it as a caveat.
+>   19.6%. Net: **22.4% low**, a ×1.289 correction. ⚠️ **Nothing in v1 computes that composite or
+>   grades the constants** — the constants are carried in `context` and printed beside the value, so a
+>   map built this way is off by ~22% and every check in this document still passes it. This is the
+>   single strongest reason the K3.1 band is a 50–500 sanity bound and not a reference interval.
 > - **And there is no cross-centre calibration to fall back on:** 📄 `odudu2018`, p.4 — *"we found no
 >   studies of reproducibility between centres."*
 
@@ -1006,8 +1025,12 @@ was registration done **per kidney**?
   full and which is a visual-inspection habit rather than a validated criterion.
 - ⚠️ 📄 **Heavy background suppression can break ASL-driven registration to M0.** Registration success
   was **54%** using the BGS ASL images themselves versus **100%** using separately-acquired fat images
-  (`bones2019`, n=9, heaviest suppression). So BS quality and registration quality trade off, and this
-  check must be read alongside K8.3's BS conformance rather than as a proxy for it.
+  (`bones2019`, n=9, heaviest suppression). So BS quality and registration quality trade off, and a
+  poor registration on a heavily suppressed series is as likely to be that trade-off as a bad scan.
+  The check therefore carries K5.2's detected background-suppression state in its reason string
+  instead of treating registration quality as a proxy for acquisition quality. (Nothing in v1 grades
+  the ASL background-suppression setting itself against the consensus — K6.2 grades BS on the **M0**
+  only.)
 
 **🔗 needs (dependency):** affines and shapes for ΔM, M0 and the masks; registration provenance for
 the scope test; masks plus the 4D series for the optional residual test. No affines → UNKNOWN. Note
@@ -1099,14 +1122,14 @@ positioned too tightly around the kidney.
 
 ---
 
-# 🟠 STREAM A — QC of the raw data *(Modules K5–K8)*
+# 🟠 STREAM A — QC of the raw data *(Modules K5–K7)*
 
 ## 🟠 Module K5 — Schema, data type & control-label
 
 ### K5.1 Metadata completeness vs Nery Table 4 · `REQUIRED`
 
-**🎯 what it asks:** is enough acquisition metadata present to run the checks that depend on it —
-above all Module K8?
+**🎯 what it asks:** is enough acquisition metadata present to run the checks that depend on it — and
+where it is absent, which checks does that silently degrade?
 
 > ⚠️ **BIDS does not cover the kidney, so this check is anchored on the renal consensus instead.** The
 > ASL-BIDS authors say so in print: *"Whereas ASL-BIDS could perhaps be used for other body parts,
@@ -1132,18 +1155,23 @@ remainder as present/absent INFO:
 
 | gating item | gates | field it is read from |
 |---|---|---|
-| labelling type | K5.2 routing, K8.1, K8.2 | `ArterialSpinLabelingType` |
-| inflow time(s) / PLD(s) | K8.1 (R4.4), K8.2 (R5.11), K2.2 | `PostLabelingDelay` / `InversionTime` |
-| labelling duration | K8.2 (R5.2) | `LabelingDuration` |
-| number of averages | K8.2 (R4.7/R5.12), K7.2 | `TotalAcquiredPairs` |
-| background suppression + pulse count | K5.3 gate, K6.2, K8.3 (R7.2), K8.4 (α) | `BackgroundSuppression`, `BackgroundSuppressionNumberPulses` |
-| repetition time | K8.2 (R6.12), K6.3 | `RepetitionTimePreparation` |
-| slice thickness | K8.3 (R6.8/R6.9) | `AcquisitionVoxelSize[2]` — **not** `SliceThickness` |
-| in-plane resolution | K8.3 (R6.10) | `AcquisitionVoxelSize[0:2]`, or the affine |
-| image orientation | K8.3 (R6.7) | the affine |
-| readout pulse sequence type | K8.3 (R6.4/R6.5) | `PulseSequenceType` |
-| field strength | K8.4 (T1b selection), K6.3 | `MagneticFieldStrength` |
+| labelling type | K5.2 routing; the comparability context K2.1 and K3.1 report against | `ArterialSpinLabelingType` |
+| inflow time(s) / PLD(s) | K2.2 — without it the PWS band cannot honestly be applied and the check demotes to INFO | `PostLabelingDelay` / `InversionTime` |
+| number of averages | K7.2's surviving-pair comparison | `TotalAcquiredPairs` (or inferred from the 4D shape by K5.2) |
+| background suppression + pulse count | K5.3's run/abstain gate, K6.2 | `BackgroundSuppression`, `BackgroundSuppressionNumberPulses` |
+| repetition time (of the M0) | K6.3 | `RepetitionTimePreparation` |
+| readout / pulse sequence type | K6.2's M0-vs-ASL readout match; K5.2 routing, which in turn gates K4.3 and K7.2 | `PulseSequenceType`, `MRAcquisitionType` |
+| field strength | K6.3's default compartment T1s; the context K2.1 and K3.1 report against | `MagneticFieldStrength` |
+| voxel size + orientation | K7.1 (mm conversion, cranio-caudal axis), K4.3 (slice axis), K5.2 (base plane) — **read from the affine, so never actually missing** | the affine; `AcquisitionVoxelSize` when present |
 | organ + laterality | every per-kidney check | **no BIDS field** — non-standard extension |
+
+> ⚠️ **This list got shorter, and the reason is worth stating.** An earlier draft also gated on
+> labelling duration, slice thickness, in-plane resolution, image orientation and the readout scheme,
+> because a protocol-conformance module graded each of them against a numbered consensus statement.
+> That module is out of v1, so those fields no longer gate anything: nothing left in the design
+> compares them to a recommendation. Keeping them here would have been a paperwork check demanding
+> fields no verdict depends on, which is exactly the failure mode the "enforce it only if something
+> consumes it" rule exists to prevent. They are still counted and reported in the Table-4 tally.
 
 **📥 inputs:**
 ```python
@@ -1158,18 +1186,19 @@ remainder as present/absent INFO:
 ```python
 {
   "metric": {
-    "gating_present": ["ArterialSpinLabelingType", "PostLabelingDelay", "LabelingDuration",
+    "gating_present": ["ArterialSpinLabelingType", "PostLabelingDelay",
                        "MagneticFieldStrength", "AcquisitionVoxelSize", "orientation"],
-    "gating_missing": ["BackgroundSuppressionNumberPulses", "TotalAcquiredPairs",
-                       "PulseSequenceType"],
+    "gating_missing": ["BackgroundSuppression", "TotalAcquiredPairs",
+                       "RepetitionTimePreparation"],
     "table4_reported_present": 17, "table4_total": 25,
     "no_bids_field": ["fat suppression", "physiological triggering", "pixel bandwidth",
                       "slice gap", "organ/laterality", "native vs transplant"],
     "nonstandard_extension_used": {"organ": "kidney", "laterality": "bilateral"},
-    "checks_degraded": ["K8.3.readout", "K8.4.alpha_bgs", "K7.2.surviving_pairs"],
+    "checks_degraded": ["K5.3.bs_gate", "K6.2.bs_flag", "K6.3.tr_rule",
+                        "K7.2.surviving_pairs"],
   },
   "verdict": "PASS | WARN | UNKNOWN",
-  "reason":  "3 gating items missing; K8.3, K8.4 and K7.2 will degrade to UNKNOWN for those items",
+  "reason":  "3 gating items missing; K5.3, K6.2, K6.3 and K7.2 will degrade for those items",
 }
 ```
 
@@ -1177,11 +1206,12 @@ remainder as present/absent INFO:
 1. Merge the sources in priority order: sidecar → vendor header → affine-derived → K5.2 inference.
    Record which source each item came from, so the report can say "orientation was derived from the
    affine, not read from metadata".
-2. For each of the 12 gating items, test presence and basic type/unit sanity (a PLD of `1400` is ms,
+2. For each of the 9 gating items, test presence and basic type/unit sanity (a PLD of `1400` is ms,
    a PLD of `1.4` is s — normalise both to seconds and record the assumed unit).
 3. Collect `gating_missing`, and map each missing item to the checks it disables via a static
    dependency table; emit that list as `checks_degraded` so the consequence is visible in one place
-   instead of scattered across eight UNKNOWNs.
+   instead of scattered across the six checks that consume metadata (K2.2, K4.3, K5.3, K6.2, K6.3,
+   K7.2).
 4. Count the full Table-4 set for the report, but do not grade on it.
 5. **Never FAIL.** A missing sidecar is a degradation, not a corruption — identical policy to brain
    5.1, and more justified here, since no standard *requires* kidney ASL metadata in the first place.
@@ -1191,7 +1221,7 @@ remainder as present/absent INFO:
 **📊 PASS / WARN / FAIL:**
 | outcome | condition |
 |---|---|
-| ✅ PASS | all 12 gating items resolvable from sidecar, header or affine |
+| ✅ PASS | all 9 gating items resolvable from sidecar, header or affine |
 | ⚠️ WARN | one or more gating items missing — they are listed, with the checks they degrade |
 | ❌ FAIL | **not reachable.** No standard mandates renal ASL metadata, so its absence cannot fail a scan |
 | ❓ UNKNOWN | no sidecar, no header **and** no affine — nothing to inspect at all |
@@ -1200,9 +1230,10 @@ remainder as present/absent INFO:
 - **The Table-4 item list** — 📄 `nery2020_renal_asl_consensus.pdf`, agreed **81–100%**. **PUBLISHED**,
   and it is a presence test, so it needs no calibration. This is the highest-confidence check in the
   document.
-- **The 12-item gating subset** — 🔧 a design decision, not a published subset: it is exactly the set
+- **The 9-item gating subset** — 🔧 a design decision, not a published subset: it is exactly the set
   of items some other check in this document reads. The rule is that the schema check enforces a field
-  if and only if something consumes it, which is what keeps it from becoming a paperwork check.
+  if and only if something consumes it, which is what keeps it from becoming a paperwork check — and
+  it is why the subset shrank from 12 items to 9 when protocol conformance left v1.
 - **BIDS hooks that do exist:** `BodyPart` (optional, free-text, DICOM 0018,0015), plus
   `BodyPartDetails` and `BodyPartDetailsOntology`. There is **no filename entity** to encode organ for
   ASL — `voi-<label>` is MRS-only and `perf` entities are limited to sub/ses/acq/run/rec/dir/part/echo.
@@ -1218,7 +1249,8 @@ remainder as present/absent INFO:
 **🔗 needs (dependency):** a sidecar, a vendor header, or at minimum an affine. With none of the three
 → UNKNOWN. It has no hard dependency on K5.2, but consumes its inference dict where present.
 
-**🩺 catches:** the upstream gap that would otherwise make eight downstream checks guess in silence.
+**🩺 catches:** the upstream gap that would otherwise make the six metadata-consuming checks guess in
+silence.
 It never crashes on missing metadata; degrading to inference **and naming which checks that degrades**
 is the entire design.
 
@@ -1231,9 +1263,10 @@ wrong ones are marked N/A rather than failed?
 
 This is the renal analogue of brain check 8.2, and it is *more* load-bearing here: renal data in the
 wild is at least as metadata-poor as the three brain vendor cases were, and the routing consequences
-are sharper — the 20-pair minimum is scoped to 2D readouts (K8.2), the QUIPSS II requirement applies
-only to PASL (K8.1), the labelling-plane check applies only to PCASL (K8.3), and the whole of Stream B
-is per-kidney, which requires laterality to be resolved.
+are sharper — the 20-pair minimum K7.2 compares against is scoped to 2D readouts, slice coverage
+(K4.3) is meaningless on a single-slice readout, the control/label swap test (K5.3) cannot run on a
+pre-subtracted ΔM or under background suppression, and the whole of Stream B is per-kidney, which
+requires laterality to be resolved.
 
 **📥 inputs:**
 ```python
@@ -1285,7 +1318,10 @@ is per-kidney, which requires laterality to be resolved.
    for the same reason as brain: `perfusion_calib` is a calibrated *output*, not a calibration scan.
 2. **Classify the labelling scheme from tokens only, never by default.** R3.1 (6% abst / 93%) endorses
    *both* PCASL and FAIR, so neither may be assumed; with no token and no sidecar the value is
-   `"unknown"` and K8.1/K8.2 both return UNKNOWN rather than one of them mis-firing.
+   `"unknown"` and every downstream consumer says so rather than assuming a scheme. The labelling
+   scheme is also the comparability context K2.1 and K3.1 report against, and an assumed one would
+   silently mis-frame the largest single technical effect in this evidence base (~1.8× on cortical
+   RBF between FAIR and pCASL in the same subjects).
 3. **Read the shapes.** A 3-D ASL file → `"pre-subtracted deltaM"`, `n_volumes = 1`. A 4-D file →
    `"control/label series (N volumes)"`, `n_pairs_implied = N // 2`. Any `m0`-role file → `"separate"`,
    else `"absent"`.
@@ -1293,7 +1329,8 @@ is per-kidney, which requires laterality to be resolved.
    (the normalised third column of the affine's rotation block) in RAS. The dominant component names
    the base plane: |A/S| → axial, |A/P| → coronal, |L/R| → sagittal. The obliquity is
    `arccos(|component|)` in degrees; ≥ 10° adds the `-oblique` suffix. Coronal-oblique is the
-   consensus-recommended orientation (R6.7, 6% abst / 93%) and is what K8.3 tests against.
+   consensus-recommended orientation (R6.7, 6% abst / 93%); v1 **reports** the resolved plane as INFO
+   and grades it nowhere, since protocol conformance is out of scope.
 5. **Readout:** 3-D acquisition or a single 3-D volume with many thin slices → `3D`; slice count 1 →
    `2D single-slice`; otherwise `2D multislice`. Where a sidecar gives `MRAcquisitionType`, it wins.
 6. **Background suppression is tri-state and never confidently false.** A `bs`/`bgs` token, or
@@ -1320,14 +1357,14 @@ is per-kidney, which requires laterality to be resolved.
 - **The filename vocabulary, the affine-based orientation and the shape rules** — 🧮 deterministic
   classification, nothing to tune.
 - **The 10° obliquity cut** — 🔧 **UNCALIBRATED** presentation choice; it changes the label string
-  only, never a verdict, since K8.3 grades the base plane.
+  only and never a verdict, because no check in v1 grades orientation at all.
 
 **🔗 needs (dependency):** the file listing (names, shapes, voxel sizes, affines) and the folder name.
 No sidecar required. Empty listing → UNKNOWN.
 
 **🩺 catches:** nothing on its own — it prevents *mis-application* of later checks, which is where the
-real damage would be: a 20-pair minimum enforced on a 3D acquisition, a QUIPSS II requirement applied
-to PCASL, or a control/label swap test run on a pre-subtracted map.
+real damage would be: a 20-pair minimum enforced on a 3D acquisition, a slice-coverage verdict issued
+on a single-slice readout, or a control/label swap test run on a pre-subtracted map.
 
 ---
 
@@ -1846,7 +1883,8 @@ operationalisation of R8.2, which recommends outlier rejection and specifies no 
 5. `surviving_pairs` is the number that matters downstream: it is what K2.1's tSNR and the averaged map
    are actually built from, and it is what the consensus minimum is compared against.
 6. Gate the surviving-pair comparison on readout: the 20-pair minimum applies to **2D** acquisitions
-   only (see K8.2), so on a 3D readout `consensus_minimum_applicable` is `None` and only the
+   only — R4.7 / R5.12 are scoped that way in the Discussion, quoted in full under *thresholds &
+   sources* below — so on a 3D readout `consensus_minimum_applicable` is `None` and only the
    rejected-count rules apply.
 
 **Four published parameterisations, all shipped; `harteveld_2sd_20pct` is the default:**
@@ -1971,9 +2009,10 @@ exists, how much data survived gating?
 
 **📍 thresholds & sources:**
 - 📄 **R7.4 (0% abst, 76%):** *"Renal ASL scans under free breathing are preferred."* **This clears the
-  consensus bar (75%) by one point** and is the second-weakest statement this design relies on, after
-  R6.4's 75% — so free-breathing conformance can never be more than a WARN, and non-conformance is not
-  even that: only breath-hold, which has its own 94% statement, is flagged.
+  consensus bar (75%) by one point** and, with the protocol-conformance block out of v1, it is now the
+  weakest statement any check in this design leans on — so a free-breathing deviation can never be more
+  than a WARN, and on its own it is not even that: only breath-hold, which has its own 94% statement,
+  is flagged.
 - 📄 **R7.3 (0% abst, 94%):** *"Breath-hold scans are not recommended for clinical renal ASL."* At 94%
   this justifies a firm WARN. It does not justify a FAIL, because the deviation degrades the
   acquisition rather than invalidating the measurement — breath-held renal ASL data is still renal ASL
@@ -2006,514 +2045,6 @@ trace exists — a gating setup that was accepting far fewer windows than the ac
 
 ---
 
-## 🔷 Module K8 — Protocol conformance vs the renal consensus ⭐
-
-**This is the richest PUBLISHED block in the design, and it is the block with the strongest backing in
-the whole kidney toolbox.** Every threshold here is a numbered consensus statement with an agreement
-percentage attached. Each check is a straight metadata range test — nothing to calibrate, and no
-judgement smuggled in. Where Stream B has to say "nobody has published this", Module K8 can quote a
-statement number, a range, and the fraction of 23 experts who agreed with it.
-
-**The escalation rule, stated once and applied identically in K8.1–K8.4.** The agreement percentage is
-what decides how hard a deviation may be graded:
-
-| statement's agreement | what a deviation may produce | why |
-|---|---|---|
-| **≥ 90%** *and* the deviation **invalidates** the measurement | ❌ FAIL | near-unanimous panel, and the resulting number is not the quantity the protocol defines |
-| **≥ 90%** but the deviation only **degrades** the measurement | ⚠️ WARN | the data is still renal ASL data; the bias is reported, not rejected |
-| **75–89%** | ⚠️ WARN | below the bar this design requires for a FAIL |
-| **abstention ≥ 25%** | ⚠️ WARN, with the abstention stated in the reason | a quarter of the panel declined to vote |
-| **abstention ≥ 40%** *(R5.10 only)* | ℹ️ INFO — excluded from grading | the paper also contradicts itself on this one |
-
-In practice this yields **exactly one FAIL condition in the whole module** (K8.1's aorta-in-slab
-test). That is the point: near-total published coverage does not mean near-total authority to reject.
-
-Every K8 check follows the same output shape — a per-parameter dict of
-`{value, recommended, conforms, statement, agreement, abstention}` — so the report can render all four
-as one conformance table, and so a reader can always see which statement produced a given flag.
-
-### K8.1 FAIR / PASL timing conformance · `REQUIRED` *(gated on labelling = PASL/FAIR)*
-
-**🎯 what it asks:** do the pulsed-labelling timings and the selective-slab geometry match the renal
-consensus recommendations?
-
-**📥 inputs:**
-```python
-{
-  "labelling":                  "FAIR",     # from K5.2; anything else makes this N/A
-  "inversion_time_s":           1.9,        # TI
-  "bolus_duration_s":           1.1,        # TI1
-  "bolus_saturation":           "Q2TIPS",   # "QUIPSS II" | "Q2TIPS" | None
-  "selective_slab_thickness_mm": 60.0,
-  "imaging_slab_thickness_mm":   45.0,
-  "selective_slab_excludes_aorta": True,    # True | False | None
-  "inversion_pulse_type":       "FOCI",
-}
-```
-**📤 output:**
-```python
-{
-  "metric": {
-    "checked": {
-      "inversion_time_s":  {"value": 1.9, "recommended": [1.8, 2.0], "conforms": True,
-                            "statement": "R4.4", "agreement": 89, "abstention": 10},
-      "bolus_duration_s":  {"value": 1.1, "recommended": [1.0, 1.2], "conforms": True,
-                            "statement": "R4.6", "agreement": 92, "abstention": 25},
-      "bolus_saturation":  {"value": "Q2TIPS", "recommended": "QUIPSS II or Q2TIPS",
-                            "conforms": True, "statement": "R4.5", "agreement": 100,
-                            "abstention": 25},
-      "slab_excludes_aorta": {"value": True, "recommended": True, "conforms": True,
-                            "statement": "R4.2", "agreement": 100, "abstention": 6},
-      "slab_margin_mm":    {"value": 15.0, "recommended": [10, 20], "conforms": True,
-                            "statement": "R4.3", "agreement": 86, "abstention": 13},
-      "inversion_pulse_type": {"value": "FOCI", "recommended": "FOCI", "conforms": True,
-                            "statement": "R4.1", "agreement": 92, "abstention": 19},
-    },
-    "n_conforming": 6, "n_checked": 6, "n_unknown": 0,
-  },
-  "verdict": "PASS | WARN | FAIL | UNKNOWN | N/A",
-  "reason":  "all 6 checked PASL parameters conform to the renal consensus",
-}
-```
-
-**🔧 how I plan to compute it (method):**
-1. Gate on `labelling`. Not PASL/FAIR → **N/A**. Unknown labelling → **UNKNOWN** (never guess: R3.1
-   endorses both schemes, so a default would be a coin flip that produces confident-looking output).
-2. Normalise units — accept ms or s for TI and TI1 and convert to seconds, recording the assumed unit.
-3. `slab_margin_mm = selective_slab_thickness_mm − imaging_slab_thickness_mm`, tested against 10–20.
-4. Test each parameter against its recommended range or value; a parameter with no value recorded is
-   counted in `n_unknown` and contributes nothing to the verdict.
-5. Apply the module escalation rule per parameter, then take the **worst** outcome as the check's
-   verdict, naming the specific statement in the reason string.
-6. For `bolus_saturation` absent, emit WARN **with the bias direction in the reason** — flow will be
-   underestimated by a transit-time-dependent factor of unknown magnitude — rather than a bare
-   non-conformance flag.
-
-**The parameter table, with every statement and its agreement:**
-
-| parameter | recommended | statement | abst / agree | max verdict on deviation |
-|---|---|---|---|---|
-| inversion time TI (single-TI) | **1.8–2.0 s** | R4.4 | 10% / 89% | ⚠️ WARN (< 90%) |
-| bolus duration TI1 | **1.0–1.2 s** | R4.6 | **25%** / 92% | ⚠️ WARN (abstention ≥ 25%) |
-| bolus-width control (QUIPSS II / Q2TIPS) | **mandatory for quantification** | R4.5 | **25%** / **100%** | ⚠️ WARN — see below |
-| selective slab **excludes the aorta** | required | R4.2 | 6% / **100%** | ❌ **FAIL** — the only FAIL in K8 |
-| selective slab thickness | imaging slab **+ 10–20 mm** | R4.3 | 13% / 86% | ⚠️ WARN (< 90%) |
-| FOCI pulse for selective inversion | recommended | R4.1 | 19% / 92% | ⚠️ WARN (degrades only) |
-
-**📊 PASS / WARN / FAIL:**
-| outcome | condition |
-|---|---|
-| ✅ PASS | every checked parameter conforms |
-| ⚠️ WARN | any conformance failure other than the aorta test, including a missing QUIPSS II/Q2TIPS |
-| ❌ FAIL | `selective_slab_excludes_aorta` is **False** — the selective inversion labels the aorta itself, so the FAIR subtraction cancels the very signal it is meant to isolate |
-| ⊘ N/A | labelling is PCASL or VSASL |
-| ❓ UNKNOWN | labelling unknown, or no PASL timing fields recorded at all |
-
-**📍 thresholds & sources — all 📄 PUBLISHED**, from `nery2020_renal_asl_consensus.pdf` Table 2:
-- **R4.2 is the only statement in Module K8 that earns a FAIL**, and it earns it on both halves of the
-  rule: **100% agreement with only 6% abstention** (the cleanest numbers in the table), and the
-  deviation *invalidates* rather than degrades — if the selective slab includes the aorta, the labelled
-  and control conditions both contain labelled arterial blood and the difference image no longer
-  isolates perfusion. This is a physics failure, not a protocol preference.
-- **R4.5 (QUIPSS II / Q2TIPS) is WARN despite 100% agreement — a stated decision.** The wording is
-  hard: bolus-width control *"must be used to quantify perfusion"*. But **25% of the panel abstained**,
-  and the same paper concedes: *"many studies of renal perfusion with pulsed ASL have not included this
-  saturation. Quantification is typically performed by replacing TI1 with TI in the RBF equation …
-  This approach maximizes signal but **will underestimate flow by a transit time-dependent
-  factor**."* A hard FAIL would reject a large slice of the published renal literature, and the paper
-  itself tells us what the consequence actually is — a known-direction bias. So the check WARNs and
-  puts that bias direction in the reason string, which is more useful to a user than a rejection.
-  Worth noting for anyone porting from brain: this is *softer* than the brain White Paper, which says
-  single-TI PASL without QUIPSS II "cannot be reliably converted into CBF".
-- **R4.4 / R4.6 ranges** are graded as ranges, not point values, because the consensus states them as
-  ranges.
-- 🧮 The slab-margin arithmetic and all range comparisons are definitions — nothing to tune.
-
-**🔗 needs (dependency):** the labelling scheme from K5.2 and the PASL timing fields from K5.1's
-gating set. PCASL data → N/A. Unknown labelling or no timing fields → UNKNOWN. Individual missing
-parameters are skipped, not failed, and counted in `n_unknown`.
-
-**🩺 catches:** a pulsed renal acquisition whose bolus is not width-controlled (flow underestimated by
-an unknown factor), whose TI sits outside the range the consensus timings assume, and — the one that
-can actually void the measurement — a selective slab that labels the aorta.
-
----
-
-### K8.2 PCASL timing & averaging conformance · `REQUIRED` *(gated on labelling = PCASL)*
-
-**🎯 what it asks:** do the pseudo-continuous labelling duration, post-labelling delay, repetition
-time and pair count match the renal consensus?
-
-**📥 inputs:**
-```python
-{
-  "labelling":            "PCASL",    # from K5.2; anything else makes this N/A
-  "labeling_duration_s":  1.65,       # tau
-  "post_labeling_delay_s": 1.4,
-  "repetition_time_s":    5.0,        # labelling + readout
-  "n_pairs_acquired":     25,
-  "n_pairs_surviving":    23,         # from K7.2, when available
-  "readout":              "2D single-slice",   # gates the 20-pair rule
-}
-```
-**📤 output:**
-```python
-{
-  "metric": {
-    "checked": {
-      "labeling_duration_s":   {"value": 1.65, "recommended": [1.5, 1.8], "conforms": True,
-                                "statement": "R5.2",  "agreement": 100, "abstention": 10},
-      "post_labeling_delay_s": {"value": 1.4,  "recommended": [1.2, 1.5], "conforms": True,
-                                "statement": "R5.11", "agreement": 100, "abstention": 19},
-      "repetition_time_s":     {"value": 5.0,  "recommended": [4.0, 6.0], "conforms": True,
-                                "statement": "R6.12", "agreement": 94,  "abstention": 0},
-      "n_pairs_acquired":      {"value": 25,   "recommended": ">= 20",   "conforms": True,
-                                "statement": "R5.12", "agreement": 83,  "abstention": 14,
-                                "scoped_to": "2D readouts"},
-    },
-    "pair_rule_applied": True,     # False on 3D readouts
-    "n_conforming": 4, "n_checked": 4, "n_unknown": 0,
-  },
-  "verdict": "PASS | WARN | UNKNOWN | N/A",
-  "reason":  "all 4 checked PCASL parameters conform; 25 pairs acquired, 23 surviving",
-}
-```
-
-**🔧 how I plan to compute it (method):**
-1. Gate on `labelling`. Not PCASL → **N/A**. Unknown → **UNKNOWN**.
-2. Normalise ms/s and test τ, PLD and TR against their ranges.
-3. **Gate the 20-pair rule on `readout`.** If the readout is 3D, set `pair_rule_applied: False` and
-   skip it entirely — see the scoping note below.
-4. On 2D readouts, test `n_pairs_acquired >= 20`. Also report `n_pairs_surviving` from K7.2 alongside,
-   but **do not grade it here** — that comparison belongs to K7.2, which owns the rejection accounting
-   and states the extrapolation involved.
-5. Apply the escalation rule per parameter; worst outcome wins; name the statement in the reason.
-
-**The parameter table, with every statement and its agreement:**
-
-| parameter | recommended | statement | abst / agree | max verdict on deviation |
-|---|---|---|---|---|
-| labelling duration τ | **1.5–1.8 s** | R5.2 | 10% / **100%** | ⚠️ WARN (degrades only) |
-| post-labelling delay (single-PLD) | **1.2–1.5 s** | R5.11 | 19% / **100%** | ⚠️ WARN (degrades only) |
-| TR (labelling + readout) | **4–6 s** | R6.12 | 0% / 94% | ⚠️ WARN (degrades only) |
-| minimum ASL pairs, **2D readouts only** | **≥ 20** | R5.12 (PCASL) / R4.7 (FAIR) | 14% / 83% · 10% / 89% | ⚠️ WARN (< 90%) |
-
-**📊 PASS / WARN / FAIL:**
-| outcome | condition |
-|---|---|
-| ✅ PASS | every checked parameter conforms |
-| ⚠️ WARN | τ, PLD or TR outside its consensus range, or (2D only) fewer than 20 pairs acquired |
-| ❌ FAIL | **never in this check.** No statement here combines ≥ 90% agreement with an invalidating deviation: a short PLD biases the estimate in a known direction, and too few pairs degrades SNR — neither makes the measurement something other than renal perfusion |
-| ⊘ N/A | labelling is PASL/FAIR or VSASL |
-| ❓ UNKNOWN | labelling unknown, or no PCASL timing fields recorded |
-
-**📍 thresholds & sources — all 📄 PUBLISHED**, from `nery2020` Table 2 (statements quoted from p.7):
-- 📄 **R5.12**, verbatim: *"In single-PLD acquisitions, a minimum of 20 ASL pairs is recommended"*
-  (14% abstentions, **83% agreement**). 📄 **R4.7**, verbatim: *"In single-TI acquisitions, a minimum
-  of 20 ASL pairs is recommended"* (10% abstentions, **89% agreement**). Both sit below the 90% bar,
-  so neither can drive a FAIL anywhere in this document.
-- ⚠️ **The 20-pair rule is conditional on readout and must be gated.** The Table-2 statement is
-  unqualified, but the Discussion scopes it: *"The acquisition of a minimum of 20 ASL pairs (control
-  and label images) **when using the recommended 2D readout** is advised."* A blanket `n_pairs >= 20`
-  check would mis-fire on 3D data — it would, for instance, flag
-  `radovic2025_donor_recipient_paediatric_allograft.pdf`, which used **6 pairs** on 3D-GRASE and
-  explains why: 20 pairs would have taken 12 min 6 s instead of 3 min 42 s, *"which was unacceptable
-  in our (or any) study group."* **Gate on `MRAcquisitionType`.**
-- ⚠️ **PLD 1.2–1.5 s is a constant that must NOT be inherited from brain.** It is *shorter* than the
-  brain White Paper's adult 1.8–2.0 s, and it is only marginally longer than the measured pCASL
-  cortical arterial transit time of 0.71 ± 0.25 s (📄 `harteveld2020`) — which is the physiological
-  reason the recommendation sits where it does. A toolbox carrying the brain PLD across would flag
-  every consensus-conformant renal PCASL scan.
-- 🧮 All range comparisons are definitions.
-
-**🔗 needs (dependency):** the labelling scheme from K5.2, the PCASL timing fields from K5.1's gating
-set, and the readout type to gate the pair rule. `n_pairs_surviving` is optional context from K7.2.
-PASL data → N/A. Missing fields → those parameters counted in `n_unknown`, not failed.
-
-**🩺 catches:** a renal PCASL protocol built with brain constants — the single most likely
-misconfiguration for a site moving from neuro to body ASL — and an averaging count too low for the
-readout in use.
-
----
-
-### K8.3 Geometry & readout conformance · `REQUIRED`
-
-**🎯 what it asks:** was the acquisition geometry — orientation, resolution, slice thickness, readout
-scheme, suppression options — the geometry the consensus recommends?
-
-**📥 inputs:**
-```python
-{
-  "orientation":        "coronal-oblique",   # from K5.2's affine analysis
-  "readout":            "2D single-slice",
-  "pulse_sequence_type": "SE-EPI",
-  "in_plane_mm":        [3.0, 3.0],
-  "slice_thickness_mm": 5.0,
-  "parallel_imaging_factor": 2,
-  "fat_suppression":    True,
-  "background_suppression": True,
-  "n_bs_pulses":        3,
-  "labelling":          "PCASL",             # gates the labelling-plane rows
-  "labelling_plane_perpendicular_to_aorta": True,
-  "labelling_plane_offset_cm": 9.0,          # superior to the highest kidney centre
-  "native_or_transplant": "native",
-}
-```
-**📤 output:**
-```python
-{
-  "metric": {
-    "checked": {
-      "orientation":        {"value": "coronal-oblique", "recommended": "coronal oblique",
-                             "conforms": True, "statement": "R6.7",  "agreement": 93, "abstention": 6},
-      "readout_scheme":     {"value": "2D single-slice", "recommended": "2D single-slice",
-                             "conforms": True, "statement": "R6.1",  "agreement": 95, "abstention": 10},
-      "pulse_sequence":     {"value": "SE-EPI", "recommended": "spin-echo EPI",
-                             "conforms": True, "statement": "R6.4",  "agreement": 75, "abstention": 5},
-      "slice_thickness_mm": {"value": 5.0, "recommended": [4, 8], "conforms": True,
-                             "statement": "R6.8",  "agreement": 100, "abstention": 19},
-      "in_plane_mm":        {"value": [3.0, 3.0], "recommended": [2, 4], "conforms": True,
-                             "statement": "R6.10", "agreement": 93, "abstention": 0},
-      "parallel_imaging":   {"value": 2, "recommended": "<= 2", "conforms": True,
-                             "statement": "R6.11", "agreement": 100, "abstention": 19},
-      "fat_suppression":    {"value": True, "recommended": True, "conforms": True,
-                             "statement": "R7.6",  "agreement": 90, "abstention": 5},
-      "background_suppression": {"value": True, "recommended": True, "conforms": True,
-                             "statement": "R7.2",  "agreement": 80, "abstention": 5},
-      "labelling_plane":    {"value": {"perpendicular": True, "offset_cm": 9.0},
-                             "recommended": {"perpendicular": True, "offset_cm": [8, 10]},
-                             "conforms": True, "statement": "R5.3 / R5.4",
-                             "agreement": [100, 94], "abstention": [13, 14]},
-    },
-    "n_conforming": 9, "n_checked": 9, "n_unknown": 0,
-    "geometry_source": "affine",     # which items came from the affine rather than metadata
-  },
-  "verdict": "PASS | WARN | UNKNOWN",
-  "reason":  "all 9 checked geometry parameters conform to the renal consensus",
-}
-```
-
-**🔧 how I plan to compute it (method):**
-1. Take orientation, in-plane resolution and slice thickness from **the affine** where metadata is
-   absent — this matters, because renal data in the wild is metadata-poor and these three are the most
-   valuable K8 rows that survive with no sidecar at all. Record `geometry_source` per item.
-2. Test orientation against coronal-oblique (R6.7). **For transplants, invert the expectation**: the
-   allograft sits in the iliac fossa, and *"orienting the imaging slab along the long axis of the
-   kidney was not always possible"* (📄 `echeverriachasco2023_allograft_reproducibility.pdf`), so on
-   `native_or_transplant == "transplant"` a non-coronal orientation is reported as conforming-by-context
-   rather than flagged.
-3. Test the readout scheme (R6.1 / R6.3), the pulse sequence (R6.4 / R6.5), slice thickness against
-   4–8 mm for 2D or 3–6 mm for 3D (R6.8 / R6.9), in-plane against 2–4 mm (R6.10), acceleration against
-   ≤ 2 (R6.11), and the fat- and background-suppression flags (R7.6 / R7.2).
-4. Gate the labelling-plane rows on `labelling == "PCASL"`; they are skipped for FAIR.
-5. Apply the module escalation rule per parameter; the check's verdict is the worst outcome.
-6. Metadata-only items (fat suppression, pixel bandwidth, triggering, acceleration factor) will
-   frequently be absent — count them in `n_unknown`, never fail them.
-
-**The parameter table, with every statement and its agreement:**
-
-| parameter | recommended | statement | abst / agree | max verdict on deviation |
-|---|---|---|---|---|
-| slice orientation | **coronal oblique**, along the kidney major axis | R6.7 | 6% / 93% | ⚠️ WARN |
-| default readout scheme | **2D single-slice** | R6.1 | 10% / 95% | ⚠️ WARN |
-| 3D as default | **not recommended** | R6.3 | 10% / 95% | ⚠️ WARN |
-| preferred readout (2D single-slice) | **spin-echo EPI** | R6.4 | 5% / **75%** ← weakest in the document | ⚠️ WARN only, never more |
-| acceptable alternatives | bSSFP, single-shot RARE | R6.5 | 14% / 94% | conforming, not a deviation |
-| slice thickness, 2D | **4–8 mm** | R6.8 | 19% / **100%** | ⚠️ WARN (degrades only) |
-| slice thickness, 3D | **3–6 mm** | R6.9 | 13% / **100%** | ⚠️ WARN (degrades only) |
-| in-plane resolution | **2–4 mm** | R6.10 | 0% / 93% | ⚠️ WARN |
-| parallel-imaging acceleration | **≤ R = 2** | R6.11 | 19% / **100%** | ⚠️ WARN (permissive wording) |
-| fat suppression | recommended | R7.6 | 5% / 90% | ⚠️ WARN |
-| background suppression | recommended (2–4 inversion pulses typical) | R7.2 | 5% / 80% | ⚠️ WARN |
-| PCASL labelling plane | ⊥ to aorta, **8–10 cm superior** to the highest kidney centre | R5.3 / R5.4 | 13% / **100%** · 14% / 94% | ⚠️ WARN |
-
-**📊 PASS / WARN / FAIL:**
-| outcome | condition |
-|---|---|
-| ✅ PASS | every checked geometry parameter conforms |
-| ⚠️ WARN | any deviation, naming the statement and its agreement in the reason |
-| ❌ FAIL | **never.** Nothing here invalidates a measurement: a thicker slice or a coarser matrix produces worse renal ASL, not non-renal-ASL. **R6.4 at 75% could not justify a FAIL even if it did** — it sits exactly on the inclusive consensus bar and is the weakest of all 59 statements |
-| ❓ UNKNOWN | neither metadata nor an affine — nothing to test against |
-
-**📍 thresholds & sources — all 📄 PUBLISHED**, from `nery2020` Table 2. Three implementation notes:
-- 📄 **R6.4, verbatim (p.7):** *"Spin-echo EPI is the preferred readout for 2D single-slice
-  acquisitions"* — **75% agreement, 5% abstentions, the lowest agreement of all 59 statements**,
-  sitting exactly on the inclusive 75% consensus bar. Any check on it WARNs and can never do more.
-  R6.11's wording is *permissive* ("may be used"), so it is treated the same way despite its 100%.
-- ⚠️ **The rationale for coronal-oblique is itself QC-relevant and belongs in the reason string:** 📄
-  *"most kidney movement due to the respiratory cycle is within the image plane and so data can be
-  corrected using image registration methods"* — plus, for FAIR specifically, *"this is necessary to
-  avoid labelling of the inflowing vessels for the selective label."* So a non-coronal-oblique FAIR
-  acquisition is not merely unconventional; it is a labelling-validity risk, and the reason string
-  says so. (The hard version of that risk is K8.1's R4.2 aorta test.)
-- **Geometry is checkable from the affine with no sidecar at all** — orientation, in-plane resolution
-  and slice thickness all survive a metadata-free upload, which is what makes K8.3 the most robust
-  member of Module K8 in practice. Fat suppression, pixel bandwidth, triggering and acceleration are
-  metadata-only and will frequently be UNKNOWN.
-
-**🔗 needs (dependency):** an affine at minimum (three parameters), the full sidecar for the rest, and
-the labelling scheme from K5.2 to gate the labelling-plane rows. Neither affine nor metadata →
-UNKNOWN. Individual absent fields are counted, not failed.
-
-**🩺 catches:** a renal protocol assembled with brain-ASL geometry habits — a thin-slice 3D whole-organ
-acquisition where the consensus asks for a thick 2D single slice, an axial orientation that puts the
-respiratory motion through-plane, or a PCASL labelling plane placed by brain convention rather than 8–10
-cm above the kidneys.
-
----
-
-### K8.4 Quantification-constant conformance · `REQUIRED` *(gated on a quantified RBF map being supplied)*
-
-**🎯 what it asks:** were the constants used to turn ΔM into RBF the consensus constants — and if not,
-by exactly what factor is the reported RBF off?
-
-This is the check that makes the "we consume RBF, we never compute it" scope decision workable: the
-toolbox does not re-quantify, but it does compute and report the **exact multiplicative rescaling**
-between the constants the user used and the consensus values, so a non-conformant map is corrected on
-paper rather than rejected.
-
-**📥 inputs:**
-```python
-{
-  "rbf_supplied":   True,
-  "labelling":      "PCASL",
-  "field_T":        3.0,
-  "constants_used": {
-     "lambda":       0.8,      # mL/g
-     "alpha":        0.85,     # labelling efficiency AS APPLIED
-     "t1_blood_s":   1.55,
-     "bgs_correction_applied": False,
-     "n_bs_pulses":  3,
-  },
-  "labeling_duration_s": 1.65, "post_labeling_delay_s": 1.4,   # enter the T1b terms
-  "model": "single-compartment single-delay",
-}
-```
-**📤 output:**
-```python
-{
-  "metric": {
-    "checked": {
-      "lambda":     {"value": 0.8,  "recommended": 0.9,  "conforms": False,
-                     "statement": "R9.4", "agreement": 90,  "abstention": 5},
-      "t1_blood_s": {"value": 1.55, "recommended": 1.65, "conforms": False,
-                     "statement": "R9.5", "agreement": 100, "abstention": 0},
-      "alpha":      {"value": 0.85, "recommended": 0.85, "conforms": True,
-                     "statement": "R9.8", "agreement": 86,  "abstention": 13},
-      "bgs_alpha_correction": {"value": False, "recommended": True, "conforms": False,
-                     "statement": "R9.9", "agreement": 100, "abstention": 19},
-      "model":      {"value": "single-compartment single-delay",
-                     "recommended": "single-compartment single-delay", "conforms": True,
-                     "statement": "R9.2", "agreement": 100, "abstention": 7},
-    },
-    "rescale_to_consensus": {
-      "f_lambda": 1.125, "f_alpha": 1.243, "f_t1_blood": 0.922,
-      "total": 1.289,
-      "reported_vs_consensus_pct": -22.4,   # 100 * (1/total - 1); NOT -(total-1)
-      "meaning": "multiply the reported RBF by 1.289 to express it in consensus constants",
-    },
-    "alpha_effective_consensus": 0.684,   # 0.85 * 0.93^3
-  },
-  "verdict": "PASS | WARN | UNKNOWN | N/A",
-  "reason":  "lambda 0.8 vs 0.9, T1b 1.55 vs 1.65 s, BGS alpha correction omitted - reported RBF sits 22.4% below the consensus-constant value (multiply by 1.289 to correct)",
-}
-```
-
-**🔧 how I plan to compute it (method):**
-1. Gate: no quantified RBF supplied → **N/A**. Constants not recorded → **UNKNOWN** (this is the
-   common case, and it is honest: an RBF map with undocumented constants is a number of unknown scale).
-2. Compare each constant against its consensus value for the field strength and labelling scheme.
-3. **Compute the effective labelling efficiency.** R9.7/R9.8 state α *"neglecting background
-   suppression loss"*, and R9.9 corrects it by **× 0.93 per BGS inversion pulse**. So
-   `alpha_effective = alpha_nominal · 0.93 ** n_bs_pulses`. Worked: PCASL with 3 pulses →
-   `0.85 × 0.93³ = 0.684`; with 2 pulses → 0.735; with 4 → 0.636. PASL with 3 pulses →
-   `0.95 × 0.93³ = 0.764`.
-4. **Compute the rescaling factor** between the constants used (A) and the consensus constants (B),
-   from the single-compartment model the consensus specifies (R9.2). For PCASL:
-
-   ```
-   RBF = 6000 · λ · ΔM · exp(PLD/T1b) / (2 · α · T1b · M0 · (1 − exp(−τ/T1b)))
-
-   f_λ   = λ_B / λ_A
-   f_α   = α_A / α_B
-   f_T1b = [exp(PLD/T1b_B) / exp(PLD/T1b_A)] · [T1b_A(1 − e^(−τ/T1b_A))] / [T1b_B(1 − e^(−τ/T1b_B))]
-   total = f_λ · f_α · f_T1b
-   ```
-
-   For PASL with QUIPSS II, `RBF = 6000 · λ · ΔM · exp(TI/T1b) / (2 · α · TI1 · M0)`, so
-   `f_T1b = exp(TI/T1b_B − TI/T1b_A)` and the λ and α terms are unchanged.
-5. Worked example, matching the output above — `cox2017`'s constants (λ = 0.8, T1b = 1.55 s) with the
-   BGS correction omitted on a 3-pulse PCASL acquisition at τ = 1.65 s, PLD = 1.4 s:
-   `f_λ = 0.9/0.8 = 1.125`; `f_α = 0.85/0.684 = 1.243`; `f_T1b = 0.922`; **total = 1.289**.
-   ⚠️ **Normalise that correctly.** 1.289 is the *upward correction*; the reported map is
-   `1 − 1/1.289` = **22.4% below** the consensus-constant value. Report the factor and the
-   below-consensus percentage as two separate numbers and never let the correction factor be read as
-   the error size. Note also that the components partly cancel — which is exactly why the factor is
-   computed rather than each deviation being flagged in isolation.
-6. Report the factor; **do not apply it.** Rescaling the user's map would be quantification, which is
-   out of scope, and it would also silently create a second version of their data.
-
-**The constant table, with every statement and its agreement:**
-
-| constant | consensus value | statement | abst / agree | vs brain |
-|---|---|---|---|---|
-| λ (tissue–blood partition) | **0.9 mL/g** | R9.4 | 5% / 90% | **same number** |
-| T1 blood @ 3 T | **1.65 s** | R9.5 | 0% / **100%** | **same** |
-| T1 blood @ 1.5 T | **1.48 s** | R9.6 | 13% / 93% | **differs** (brain 1.35 s) |
-| α, PASL | **95%** | R9.7 | 6% / **100%** | **differs** (brain 98%) |
-| α, PCASL | **85%** | R9.8 | 13% / 86% | **same** |
-| α correction per BGS pulse | **× 0.93 each** | R9.9 | 19% / **100%** | same mechanism |
-| model | single-compartment, single-delay | R9.2 | 7% / **100%** | same family |
-
-**📊 PASS / WARN / FAIL:**
-| outcome | condition |
-|---|---|
-| ✅ PASS | every constant matches the consensus value for the field strength and labelling scheme, and the BGS α correction was applied where BS was used |
-| ⚠️ WARN | any constant deviates — the reason states the total rescaling factor and its direction |
-| ⚠️ WARN | background suppression was used but the α correction was omitted — a systematic underestimate of RBF, **~20% low** for 3 pulses (`1 − 0.93³`; equivalently a ×1.24 upward correction) |
-| ❌ FAIL | **never.** A constant deviation is a documented, exactly-computable rescaling, not a corrupted measurement — and R9.4's own basis is weak enough (see below) that failing a scan on it would be indefensible |
-| ⊘ N/A | no quantified RBF supplied (only ΔM) |
-| ❓ UNKNOWN | quantification constants not recorded |
-
-**📍 thresholds & sources — all 📄 PUBLISHED**, with two caveats that belong in the report:
-- ⚠️ **λ = 0.9 is an admitted brain-borrowed placeholder**, and this is the consensus's own wording:
-  *"Since a reliable reference for the partition coefficient value in kidney was not known to this
-  group, we recommend the use of a value of 0.9 mL/g, the average value for brain tissue."* The panel
-  adds that values *"could be readily corrected when a more accurate value of λ is known."* Tag it
-  **PUBLISHED-as-consensus-assumption**, not PUBLISHED-as-measurement. For context, the reported
-  literature spread is 0.80–0.94 in humans and a directly measured 0.91 in dog kidney (📄
-  `hillaert2024_dog_fair_asl_lambda.pdf`), and `cox2017` uses 0.8 — which, λ being in the numerator,
-  makes its reported RBF **11.1% low** on this term alone (a ×1.125 correction), before any
-  physiology. This is the single strongest reason K8.4 reports a factor instead of a verdict.
-- ⚠️ **The α values are stated "neglecting background suppression loss", and BS is recommended
-  (R7.2).** So on the *recommended* renal protocol the raw 95%/85% are wrong — they must be multiplied
-  by 0.93 per BGS inversion pulse. **A toolbox that hard-codes 0.85 will be systematically wrong on
-  exactly the protocol the consensus recommends** — too *large* an α, and since α is a divisor, an RBF
-  map **~20% below** the consensus value for three pulses (`1 − 0.93³ = 0.196`, i.e. a ×1.243 upward
-  correction). And **the BGS pulse count is rarely in metadata**, which makes this a real, checkable
-  and frequently-violated conformance item — arguably the most valuable single row in Module K8.
-- 📄 **α PASL = 95% is a renal number, not a brain one** (R9.7, 6% abst / **100%**): the brain White
-  Paper uses 98%. 🧮 **Mind the direction — α is in the denominator**, so inheriting the *larger* brain
-  value **deflates** renal PASL RBF by `1 − 0.95/0.98` ≈ **3.1%**. (The 3.2% one might reach for is
-  0.98/0.95 − 1, the ratio of the two constants, which is the correction factor and not the error in
-  the map.)
-- 📄 **T1 blood at 1.5 T is 1.48 s** (R9.6, 13% abst / 93%) against the brain's 1.35 s — another
-  constant that must not be carried across.
-- 🧮 The rescaling arithmetic is the consensus's own single-compartment model (R9.2, 7% abst /
-  **100%**) evaluated twice; nothing in it is tunable.
-
-**🔗 needs (dependency):** a quantified RBF map **and** the constants used, plus τ/PLD (PCASL) or
-TI/TI1 (PASL) for the T1b terms, plus the BGS pulse count. ΔM only → N/A. Constants unrecorded →
-UNKNOWN, which is itself a finding worth reading: it means the scale of the supplied RBF map cannot be
-reconstructed by anyone.
-
-**🩺 catches:** a reported RBF map that is correct arithmetic on the wrong constants — the failure that
-is completely invisible to every Stream-B check, because a uniformly rescaled map has the same
-cortex:medulla ratio, the same left-right asymmetry, the same negative fraction and the same
-distribution shape as a correct one.
-
----
-
 # 🔗 Where a brain check CANNOT transfer, and why
 
 The single most useful table in this document for a reviewer. ✅ = ports; ⚠️ = ports with a changed
@@ -2533,15 +2064,15 @@ constant or scope; ❌ = does not port.
 | **M0 present** | ⚠️ ✅ → K6.1 | Ports, and is **stricter** in kidney: *"M0 acquisition is mandatory"* (R9.1, 94%) against "recommended" in the brain White Paper — which is what licenses a FAIL when quantified RBF is being graded. |
 | **M0 without background suppression** | ✅ → K6.2 | **Identical rule**, quoted verbatim from the consensus p.13. Explicitly *not* inverted in kidney — correcting an earlier misreading. |
 | **M0 TR ≥ 5 s** | ⚠️ → K6.3 | Same threshold and same correction formula, but `T1,tissue` is **compartment-dependent** (cortex vs medulla differ by ~400 ms) and the consensus **gives no number** — so the check reports both factors instead of applying one. |
-| **λ = 0.9** | ⚠️ → K8.4 | Same number, materially weaker basis — the panel says outright it was borrowed from brain because no kidney reference was known. |
-| **T1 blood 1.65 s @ 3 T** | ✅ → K8.4 | Same. |
-| **T1 blood 1.35 s @ 1.5 T** | ❌ → K8.4 | Renal consensus says **1.48 s** (R9.6, 93%). |
-| **α = 0.98 (PASL)** | ❌ → K8.4 | Renal consensus says **95%** (R9.7, 100%). PCASL 85% is unchanged. And both must be multiplied by 0.93 per BGS pulse (R9.9, 100%). |
-| **PLD 1.8–2.0 s (adult)** | ❌ → K8.2 | Renal PCASL PLD is **1.2–1.5 s**; FAIR TI is 1.8–2.0 s but that is a different quantity. |
+| **λ = 0.9** | ⚠️ **no v1 check** | Same number, materially weaker basis — the panel says outright it was borrowed from brain because no kidney reference was known. **Nothing in v1 grades it**; K3.1 prints the λ the user declared beside the value and no check compares it to anything. |
+| **T1 blood 1.65 s @ 3 T** | ✅ **no v1 check** | Renal value is the same as brain, so a brain-habit choice happens to be right here. Reported as context, graded nowhere. |
+| **T1 blood 1.35 s @ 1.5 T** | ❌ **no v1 check** | Renal consensus says **1.48 s** (R9.6, 93%), so the brain constant is simply wrong for kidney — a ~9% error. Reported as context, graded nowhere, therefore undetectable by this toolbox. |
+| **α = 0.98 (PASL)** | ❌ **no v1 check** | Renal consensus says **95%** (R9.7, 100%); PCASL 85% is unchanged; and both must be multiplied by 0.93 per BGS pulse (R9.9, 100%). The omitted ×0.93ⁿ is the largest and most common constant error in this literature (~20% on three pulses) and **no v1 check looks for it**. |
+| **PLD 1.8–2.0 s (adult)** | ❌ **no v1 check** | Renal PCASL PLD is **1.2–1.5 s**; FAIR TI is 1.8–2.0 s but that is a different quantity. v1 reads PLD/TI only so that K2.2 knows whether its PWS band may be applied — it never grades the value against a recommendation. |
 | **PLD by age (White Paper Table 1)** | ❌ | The renal consensus contains **zero** paediatric or age-specific recommendations among its 59 statements. |
 | **Control/label swap** | ⚠️ → K5.3 | Same physics, worse conditions: free breathing means volume-to-volume swings can exceed the ~3% label difference. Graded on a per-pair sign-consistency fraction, not a pooled slab mean. |
 | **BIDS schema check** | ❌ → K5.1 | BIDS has **zero** kidney content; the only quantified-perfusion volume type is literally `cbf` = *cerebral* blood flow, defined by reference to the brain White Paper. Anchored on Nery Table 4 instead. |
-| **≥ N control/label pairs** | ⚠️ → K8.2 | The renal 20-pair minimum is **scoped to 2D readouts** in the Discussion. Gate on `MRAcquisitionType` or it mis-fires on 3D. |
+| **≥ N control/label pairs** | ⚠️ → K7.2 | The renal 20-pair minimum (R4.7, 89%; R5.12, 83%) is **scoped to 2D readouts** in the Discussion — gate on `MRAcquisitionType` or it mis-fires on 3D. K7.2 applies it to *surviving* pairs after outlier rejection, which is a deliberate extrapolation from an acquisition-planning rule and is why it WARNs rather than FAILs. |
 | **Left–right asymmetry needs hemisphere masks** | ⚠️ → K3.3 | *Easier* in kidney — two separate organs, no midline problem — but a consistent ~0.5–13% left > right bias must be tolerated. |
 | **Default tissue priors (MNI fallback)** | ❌ | No renal atlas space, no cortex/medulla priors. Masks must be supplied or the check is UNKNOWN. |
 | **Rough brain mask from the CBF map itself** | ❌ | No renal equivalent: a percentile threshold on an abdominal FOV selects bowel and liver as readily as kidney. This is the single biggest capability loss versus brain. |
@@ -2554,16 +2085,16 @@ constant or scope; ❌ = does not port.
 Rows = what the user supplied. ✓ = the check grades; ~ = it runs but on a weaker ROI or with a
 degraded verdict; ✗ = UNKNOWN or N/A.
 
-| What the user supplied | tSNR K2.1 | PWS/M0 K2.2 | Neg/implausible K2.3 | Cortical RBF K3.1 | CMR K3.2 | L-vs-R K3.3 | Mask integrity K4.1 | ASL↔M0 reg K4.2 | Coverage K4.3 | Swap K5.3 | Motion K7.1 | Outliers K7.2 | M0 rules K6 | Protocol K8 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **RBF map only** | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **+ whole-kidney masks (L/R)** | ✗ | ✗ | ~ whole-kidney | ✗ | ✗ | ~ whole-kidney | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **+ cortex masks** | ✗ | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **+ medulla masks / T1 map** | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **4D ΔM or control/label series + masks** | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ~ residual only | ✓ | ~ BS unknown | ✓ | ✓ | ✗ | ✗ |
-| **+ M0** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ~ | ✓ | ✓ | ~ presence only | ✗ |
-| **+ metadata (JSON / header)** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **+ respiratory trace** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ ⁺ | ✓ | ✓ | ✓ |
+| What the user supplied | tSNR K2.1 | PWS/M0 K2.2 | Neg/implausible K2.3 | Cortical RBF K3.1 | CMR K3.2 | L-vs-R K3.3 | Mask integrity K4.1 | ASL↔M0 reg K4.2 | Coverage K4.3 | Swap K5.3 | Motion K7.1 | Outliers K7.2 | M0 rules K6 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **RBF map only** | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| **+ whole-kidney masks (L/R)** | ✗ | ✗ | ~ whole-kidney | ✗ | ✗ | ~ whole-kidney | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ |
+| **+ cortex masks** | ✗ | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ |
+| **+ medulla masks / T1 map** | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ |
+| **4D ΔM or control/label series + masks** | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ~ residual only | ✓ | ~ BS unknown | ✓ | ✓ | ✗ |
+| **+ M0** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ~ | ✓ | ✓ | ~ presence only |
+| **+ metadata (JSON / header)** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **+ respiratory trace** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ ⁺ | ✓ | ✓ |
 
 Reading it:
 - **The renal cliff is masks, not tissue maps.** In brain, a CBF map alone still yields a whole-brain
@@ -2572,8 +2103,10 @@ Reading it:
   atlas fallback. That is the honest floor, and it is why the minimum-input table starts at B1.
 - **Cortex masks are the highest-leverage single input** — they unlock K3.1, the quantity R10.1
   actually asks you to report.
-- **Metadata unlocks the entire published half of the design** (Module K8), which is where every
-  threshold with a paper behind it lives.
+- **Metadata unlocks nothing on its own any more.** With protocol conformance out of v1, a sidecar
+  moves exactly four cells: it lets K6.2 and K6.3 grade the M0 properly, gives K5.3 the confident
+  background-suppression state it needs to run rather than abstain, and gives K2.2 the PLD its band is
+  conditioned on. Every other ✓ in that row was already earned by the images, the masks and the affine.
 - **K1.1 never appears in this table** because it returns N/A on every row — which is the point of
   having it.
 - ⁺ a respiratory trace refines K7.3 but does **not** replace K7.1 or K7.2: bellows amplitude does not
@@ -2583,9 +2116,26 @@ Reading it:
 
 # 🚫 Deliberately out of scope for v1
 
-Recorded so the omissions are visible as decisions, not oversights. None of these is specified
-further, because none is buildable or defensible today.
+Recorded so the omissions are visible as decisions, not oversights. Most of these are omitted because
+they are not buildable or defensible today. **The first one is different: it is buildable, and it is
+still out.**
 
+- **Protocol conformance against the renal consensus — parameter-by-parameter grading of the
+  acquisition.** A v1 module could have tested PASL/FAIR timing and slab geometry, PCASL labelling
+  duration, PLD and averaging, readout scheme, orientation, resolution and suppression options, and the
+  quantification constants, each against a numbered statement with its agreement percentage. It is
+  deliberately not in v1, and the cost is specific rather than abstract. **The consensus statements are
+  the only part of renal ASL with published, directly checkable requirements** — no renal image-quality
+  threshold has ever been published — so dropping them removes essentially all of the design's
+  externally-anchored grading and leaves the verdict resting on Stream B thresholds that are
+  `UNCALIBRATED` by their own labels. Concretely, four classes of defect become invisible: a labelling
+  slab positioned so that it excludes the aorta, a PLD chosen by brain convention (1.8–2.0 s instead of
+  1.2–1.5 s), a geometry the panel argued against at 93–100% agreement, and a quantification run on the
+  wrong constants — the last of which shifts every RBF value by up to ~22% while leaving every shipped
+  metric unchanged. What v1 does instead is *record* those parameters: K5.1 counts them against the
+  Table 4 reporting set, K5.2 resolves labelling, readout, orientation and laterality from the data,
+  and K3.1 prints the declared constants beside the value. The design keeps the information and
+  declines to issue the verdict.
 - **A renal composite quality index (renal QEI).** No labelled renal dataset exists to fit curves or a
   cutoff against; the components ship separately as K2.1, K2.3 and K3.2. *(K1.1 documents this in the
   report itself.)*
@@ -2605,8 +2155,10 @@ further, because none is buildable or defensible today.
   bright, contrast-free kidney) but is velocity-selective-ASL–specific and has no detection threshold.
 - **A transplant perfusion band.** Stable-allograft cortical RBF spans ~196–278 mL/100 g/min across
   five studies at nominally equivalent function, and the published transplant cut-offs are
-  eGFR-discrimination operating points — clinical questions, not image-quality ones. *(Transplant
-  geometry is not out of scope: K8.3 already inverts the orientation expectation.)*
+  eGFR-discrimination operating points — clinical questions, not image-quality ones. *(Transplant data
+  is still handled: K5.2 detects and records `native_or_transplant`, and since no v1 check grades
+  geometry, an allograft in the iliac fossa is never penalised for the orientation its position
+  forces.)*
 - **A paediatric perfusion band.** Four papers, ~49 children, **none healthy, none neonatal, none
   reporting a cortex/medulla split.** The widely-quoted "295 mL/100 g/min" is from five healthy
   **adults**, and its ±97 is a voxelwise spatial SD, not a between-subject one.
@@ -2614,13 +2166,19 @@ further, because none is buildable or defensible today.
   repeatability stayed high on badly motion-corrupted paediatric data because both runs shared the same
   misaligned M0, so *"intra-session WSCV and ICC alone should not be taken to be indicators of image
   quality directly."*
-- **In-toolbox RBF quantification.** Out of scope by the same rule as brain; K8.4 grades the user's
-  constants and reports the rescaling factor instead.
+- **In-toolbox RBF quantification.** Out of scope by the same rule as brain — and, since protocol
+  conformance is also out of v1, nothing grades the constants the user *did* use either. A uniformly
+  mis-scaled RBF map has the same cortex:medulla ratio, the same left–right asymmetry, the same
+  negative fraction and the same distribution shape as a correct one, so K3.1's 50–500 sanity window
+  is the only thing between a wrong λ or a missing ×0.93ⁿ and a clean pass.
 
 ---
 
 *Every threshold in this document carries a provenance tier. Where the honest answer is "nobody has
 published this", the document says so rather than inventing a band — the same policy as
-`THRESHOLD_PROVENANCE.md`, applied to a domain where it bites much harder. Module K8 is where the
-published evidence actually lives, which is why it is the longest module and the only one that can
-justify a FAIL from a citation.*
+`THRESHOLD_PROVENANCE.md`, applied to a domain where it bites much harder. With protocol conformance
+left out of v1, the published evidence that remains is thin and concentrated in the M0 rules (K6) and
+the outlier and pair-count statements behind K7.2 — those are the only checks that can justify a
+verdict from a citation. Every other FAIL in these 19 checks rests on a physical impossibility or a
+definitional floor, and every band rests on nothing published at all, which the document says at each
+one.*
