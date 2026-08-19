@@ -1,0 +1,506 @@
+[
+ {
+  "pdf": "abulnaga2023_shape_aware_placenta_segmentation.pdf",
+  "page": 8,
+  "phrases": [
+   "achieve a mean Dice score of 82.80"
+  ]
+ },
+ {
+  "pdf": "avilesverdera2023_low_field_055t_pregnancy.pdf",
+  "page": 7,
+  "phrases": [
+   "for the 0.55-T examination and 93.3%"
+  ]
+ },
+ {
+  "pdf": "avilesverdera2024_t1_fetal_brain_placenta_055t.pdf",
+  "page": 3,
+  "phrases": [
+   "a decrease in placental T1 or no significant correlation with gestational age"
+  ]
+ },
+ {
+  "pdf": "avilesverdera2025_heron_realtime_fetal_dwi.pdf",
+  "page": 4,
+  "phrases": [
+   "allowing real-time re-acquisition of corrupted volumes"
+  ]
+ },
+ {
+  "pdf": "chandrasekhar2026_adc_perfusion_iugr_3t.pdf",
+  "page": 5,
+  "phrases": [
+   "using a cut-off value of 93.75 ml/100 g/min"
+  ]
+ },
+ {
+  "pdf": "chappell2023_basil_toolbox.pdf",
+  "page": 12,
+  "phrases": [
+   "the BASIL toolbox does not currently provide any form of automated quality control"
+  ]
+ },
+ {
+  "pdf": "chernyavsky2010_intervillous_flow_placentone.pdf",
+  "page": 4,
+  "phrases": [
+   "reference radius of a placentone"
+  ]
+ },
+ {
+  "pdf": "clement2022_asl_bids.pdf",
+  "page": 5,
+  "phrases": [
+   "velocity-selective, diffusion-weighted ASL, and functional ASL, may be implemented in a future ASL-BIDS release"
+  ]
+ },
+ {
+  "pdf": "clement2022_asl_bids.pdf",
+  "page": 6,
+  "phrases": [
+   "ASL-BIDS is validated in ASL images of the brain only"
+  ]
+ },
+ {
+  "pdf": "costanzo2025_fetas_platform.pdf",
+  "page": 1,
+  "phrases": [
+   "artifact detection, motion correction, segmentation of the fetal body, amniotic fluid, and placenta"
+  ]
+ },
+ {
+  "pdf": "dellschaft2020_haemodynamics_human_placenta.pdf",
+  "page": 9,
+  "phrases": [
+   "a simultaneous reduction in placental volume by up to 40%"
+  ]
+ },
+ {
+  "pdf": "dellschaft2020_haemodynamics_human_placenta.pdf",
+  "page": 13,
+  "phrases": [
+   "displacement from the reference volume due to errors in respiratory gating",
+   "if more than four data points were discarded during the low b-values"
+  ]
+ },
+ {
+  "pdf": "deloison2021_dce_placental_perfusion.pdf",
+  "page": 1,
+  "phrases": [
+   "showed significantly lower total placental blood flow values than AGA fetuses"
+  ]
+ },
+ {
+  "pdf": "dewick2026_placental_contractions.pdf",
+  "page": 2,
+  "phrases": [
+   "placental contractions occurred in at least 60% of our healthy pregnant population",
+   "contractions involving a decrease in placental volume of >10%"
+  ]
+ },
+ {
+  "pdf": "driver2026_vsasl_bolus_duration.pdf",
+  "page": 1,
+  "phrases": [
+   "we observed a significant decrease in bolus duration during hypercapnia"
+  ]
+ },
+ {
+  "pdf": "ebner2020_niftymic_fetal_brain.pdf",
+  "page": 7,
+  "phrases": [
+   "per iteration to account for increasing accuracy"
+  ]
+ },
+ {
+  "pdf": "fan2023_osipi_pipeline_inventory.pdf",
+  "page": 4,
+  "phrases": [
+   "the approximate number of ASL studies and ASL scans processed by the pipeline"
+  ]
+ },
+ {
+  "pdf": "hall2024_placental_t2star_field_strength.pdf",
+  "page": 1,
+  "phrases": [
+   "Dice scores of 0.807 at 3T, 0.796 at 1.5T and 0.815 at 0.55T",
+   "z-scores calculated"
+  ]
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 5,
+  "phrases": [
+   "voxels (within the uterus region) with a value of more than"
+  ]
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 8,
+  "phrases": [
+   "label-control pairs were considered outliers and rejected for each VS-ASL acquisition",
+   "for the ASL source images was on average 6.7 \u00b1 3.1% for all",
+   "in the whole-placenta region and 4.3 \u00b1 1.2%"
+  ]
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 9,
+  "phrases": [
+   "showed a 9-fold decrease over the examined cutoff velocity range",
+   "tSNR dropped by almost a factor of 2 in going from a cutoff velocity of 1.6 to 4.4 cm/s"
+  ]
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 12,
+  "phrases": [
+   "we suggest similar cutoff velocities as used for the reference scan",
+   "movement of the placenta due to maternal respiration or fetal motion within the range of the",
+   "relative volumes are roughly 70% vs 30%",
+   "to allow adequate time for o 2 exchange"
+  ]
+ },
+ {
+  "pdf": "herrera2023_human_placenta_project.pdf",
+  "page": 5,
+  "phrases": [
+   "gestational-age adjusted normal ranges",
+   "remains to be determined"
+  ]
+ },
+ {
+  "pdf": "himoto2025_toward_clinical_placental_function.pdf",
+  "page": 1,
+  "phrases": [
+   "limited availability, lack of standardization, and inadequate clinician awareness"
+  ]
+ },
+ {
+  "pdf": "himoto2025_toward_clinical_placental_function.pdf",
+  "page": 2,
+  "phrases": [
+   "no standardized definition or consensus exists for placental insufficiency"
+  ]
+ },
+ {
+  "pdf": "ho2020_t2star_preterm_preeclampsia.pdf",
+  "page": 1,
+  "phrases": [
+   "reduced entire placental mean T2* values for gestational age"
+  ]
+ },
+ {
+  "pdf": "hutter2020_perfox_perfusion_oxygenation.pdf",
+  "page": 5,
+  "phrases": [
+   "We therefore express the perfusion maps in arbitrary units"
+  ]
+ },
+ {
+  "pdf": "hutter2020_perfox_perfusion_oxygenation.pdf",
+  "page": 10,
+  "phrases": [
+   "we assessed reproducibility between 2 sessions"
+  ]
+ },
+ {
+  "pdf": "hutter2022_t2star_deformation_prelabour_contractions.pdf",
+  "page": 1,
+  "phrases": [
+   "A total of 226 MRI scans"
+  ]
+ },
+ {
+  "pdf": "jacobwitz2026_normative_placental_volume_zscores.pdf",
+  "page": 1,
+  "phrases": [
+   "there is a paucity of established standardized normative raw values and z-scores"
+  ]
+ },
+ {
+  "pdf": "ji2023_fetal_behavior_mri.pdf",
+  "page": 6,
+  "phrases": [
+   "group average mean FD was 4.78 mm"
+  ]
+ },
+ {
+  "pdf": "jittou2025_placenta_segmentation_review.pdf",
+  "page": 4,
+  "phrases": [
+   "annotated placental datasets are often limited by their small size and imbalance"
+  ]
+ },
+ {
+  "pdf": "karolis2025_dhcp_fetal_fmri_release.pdf",
+  "page": 12,
+  "phrases": [
+   "dvars > p 75 + 1.5iqr"
+  ]
+ },
+ {
+  "pdf": "kim2025_volume_censoring_fetal_connectivity.pdf",
+  "page": 3,
+  "phrases": [
+   "volumes were censored at different fd levels: 0.5, 1.0, 1.5, 2.0, and 2.5 mm"
+  ]
+ },
+ {
+  "pdf": "kuklisovamurgasova2012_outlier_removal_fetal.pdf",
+  "page": 2,
+  "phrases": [
+   "the identified outliers are removed com-"
+  ]
+ },
+ {
+  "pdf": "linksourani2026_late_gestation_structure_perfusion.pdf",
+  "page": 6,
+  "phrases": [
+   "The mean PBF (149.2 \u00b1 16.6 mL/100 g/min) and mean ATT",
+   "no significant correlations with GA were found"
+  ]
+ },
+ {
+  "pdf": "liu2023_consistency_regularization_placenta_seg.pdf",
+  "page": 7,
+  "phrases": [
+   "for dice w. ground truth and"
+  ]
+ },
+ {
+  "pdf": "lu2022_ivim_dki_placenta_accreta.pdf",
+  "page": 1,
+  "phrases": [
+   "patients with PAS disorders and 27 patients with normal placentas"
+  ]
+ },
+ {
+  "pdf": "martin2020_uterine_motion_tracking.pdf",
+  "page": 5,
+  "phrases": [
+   "defined by the shift greater than 1 mm"
+  ]
+ },
+ {
+  "pdf": "martin2020_uterine_motion_tracking.pdf",
+  "page": 7,
+  "phrases": [
+   "7.8 \u00b1 5.5"
+  ]
+ },
+ {
+  "pdf": "mhra2014_mri_safety_guidelines.pdf",
+  "page": 13,
+  "phrases": [
+   "there are uncertainties concerning the effects of increased heat loads on infants and pregnant women"
+  ]
+ },
+ {
+  "pdf": "puris2025_fetal_safety_mri_review.pdf",
+  "page": 1,
+  "phrases": [
+   "on MRI safety during pregnancy, focusing on 3 T MRI and gadolinium use"
+  ]
+ },
+ {
+  "pdf": "qin2022_vsasl_review_recommendations.pdf",
+  "page": 12,
+  "phrases": [
+   "such as in the placenta or heart, in which a spatial labeling plane may be difficult"
+  ]
+ },
+ {
+  "pdf": "qin2022_vsasl_review_recommendations.pdf",
+  "page": 15,
+  "phrases": [
+   "velocity encoding direction, VS labeling and image readout is warranted and currently under study"
+  ]
+ },
+ {
+  "pdf": "sadiku2024_advanced_placental_mri_fgr_chd.pdf",
+  "page": 8,
+  "phrases": [
+   "the supine position may impair oxygenation compared to the left lateral position"
+  ]
+ },
+ {
+  "pdf": "sanchez2024_fetmrqc.pdf",
+  "page": 1,
+  "phrases": [
+   "1600 manually rated fetal brain T2-weighted images from four clinical centers and 13 different scanners"
+  ]
+ },
+ {
+  "pdf": "sanchez2024_fetmrqc.pdf",
+  "page": 4,
+  "phrases": [
+   "ensem- ble of 332 image quality metrics"
+  ]
+ },
+ {
+  "pdf": "schabel2022_longitudinal_t2star_normative.pdf",
+  "page": 5,
+  "phrases": [
+   "values of 250 ms or more being excluded"
+  ]
+ },
+ {
+  "pdf": "seiter2022_ferumoxytol_dce_cotyledon_macaque.pdf",
+  "page": 1,
+  "phrases": [
+   "number of perfusion domains, and perfusion domain volume"
+  ]
+ },
+ {
+  "pdf": "seiter2024_vsasl_2nd_trimester_bmi.pdf",
+  "page": 6,
+  "phrases": [
+   "the obese cohort perfusion significantly rose from 249\u00b186 to 336\u00b184 ml/100 g/min",
+   "rose from 216\u00b169 to 257\u00b167 ml/100 g/min in the non-obese cohort"
+  ]
+ },
+ {
+  "pdf": "slator2019_placenta_imaging_workshop_2018.pdf",
+  "page": 5,
+  "phrases": [
+   "reproducibility, and more is needed regarding future protocol development"
+  ]
+ },
+ {
+  "pdf": "snoussi2025_haitch_fetal_dwi.pdf",
+  "page": 6,
+  "phrases": [
+   "we employ a modified z- score and median absolute deviation"
+  ]
+ },
+ {
+  "pdf": "sohlberg2015_ivim_placental_perfusion_fgr.pdf",
+  "page": 1,
+  "phrases": [
+   "to evaluate in-vivo placental perfusion frac-"
+  ]
+ },
+ {
+  "pdf": "sorensen2020_t2star_placental_review.pdf",
+  "page": 9,
+  "phrases": [
+   "we recommend including as much placental tissue as possible in the region of interest"
+  ]
+ },
+ {
+  "pdf": "specktorfadida2025_segqc.pdf",
+  "page": 4,
+  "phrases": [
+   "ground truth quality is usually defined as the segmentation evaluation metric"
+  ]
+ },
+ {
+  "pdf": "suzuki2024_osipi_asl_lexicon.pdf",
+  "page": 1,
+  "phrases": [
+   "for brain perfusion imaging are included",
+   "not intended to be limited to these techniques"
+  ]
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 13,
+  "phrases": [
+   "Recommendations: Following the PARENCHIMA initiative"
+  ]
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 16,
+  "phrases": [
+   "Lung ASL perfusion imaging is still a heavily research-oriented technique, therefore"
+  ]
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 17,
+  "phrases": [
+   "labeling efficiency of PCASL"
+  ]
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 18,
+  "phrases": [
+   "is contributed to by both maternal and fetal flow",
+   "to selectively label maternal placental perfusion"
+  ]
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 19,
+  "phrases": [
+   "Follow-up studies are warranted in a large-scale clinical setting"
+  ]
+ },
+ {
+  "pdf": "turnbull2026_t2star_susceptibility_placental_health.pdf",
+  "page": 4,
+  "phrases": [
+   "the shortest distance to the basal plate and chorionic plate was calculated"
+  ]
+ },
+ {
+  "pdf": "uus2020_deformable_svr_placenta.pdf",
+  "page": 8,
+  "phrases": [
+   "the optimal values corresponding to adequate registration quality are"
+  ]
+ },
+ {
+  "pdf": "wang2016_slicseg_placenta_segmentation.pdf",
+  "page": 1,
+  "phrases": [
+   "only needs user interactions in a single slice"
+  ]
+ },
+ {
+  "pdf": "yetisir2025_fetal_rf_safety_3t.pdf",
+  "page": 4,
+  "phrases": [
+   "assuming a constant 60-min 2 W/kg wbSAR RF exposure at 3-T and 1.5-T"
+  ]
+ },
+ {
+  "pdf": "zhong2025_contrast_invariant_placental_segmentation.pdf",
+  "page": 1,
+  "phrases": [
+   "masked pseudo-labeling (MPL) for semi-supervised domain adaptation across echo times"
+  ]
+ },
+ {
+  "pdf": "zhu2025_dielectric_pads_fetal_3t.pdf",
+  "page": 2,
+  "phrases": [
+   "the wavelength of the transmission field is shortened at 3 T and becomes comparable to the dimensions of the gravid abdomen"
+  ]
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 2,
+  "phrases": [
+   "188 \u00b1 40 mL/100 g/min in healthy pregnancies"
+  ]
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 3,
+  "phrases": [
+   "207 \u00b1 39 mL/100 g/min and 171 \u00b1 32 mL/100 g/min, respectively"
+  ]
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 4,
+  "phrases": [
+   "0.58 \u00b1 0.10 in healthy pregnancies"
+  ]
+ }
+]

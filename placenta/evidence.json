@@ -1,0 +1,590 @@
+[
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 13,
+  "phrase": "Recommendations: Following the PARENCHIMA initiative",
+  "supports": "The ISMRM body-ASL review issues formal Recommendations for the KIDNEY.",
+  "why": "This is the kidney section's recommendation block. It is the comparator that makes the placenta section's silence meaningful."
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 19,
+  "phrase": "Follow-up studies are warranted in a large-scale clinical setting",
+  "supports": "The same review's PLACENTA section ends at Summary and issues NO acquisition recommendations.",
+  "why": "The placenta subsection's closing sentence. Nothing resembling a parameter recommendation follows it - the strongest single piece of evidence that no placental ASL consensus exists."
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 16,
+  "phrase": "Lung ASL perfusion imaging is still a heavily research-oriented technique, therefore",
+  "supports": "The review says explicitly when recommendations are premature for an organ.",
+  "why": "Shows the authors DO say 'recommendations are premature' when they mean it, so the placenta section's omission is a deliberate editorial choice, not an oversight."
+ },
+ {
+  "pdf": "qin2022_vsasl_review_recommendations.pdf",
+  "page": 15,
+  "phrase": "velocity encoding direction, VS labeling and image readout is warranted and currently under study",
+  "supports": "The ISMRM VSASL recommendation paper declines to set placental parameters.",
+  "why": "The entire placenta subsection (11.3) ends here. Every VSASL knob that matters for placenta is declared unsettled, so any placental VSASL threshold must ship UNCALIBRATED."
+ },
+ {
+  "pdf": "qin2022_vsasl_review_recommendations.pdf",
+  "page": 12,
+  "phrase": "such as in the placenta or heart, in which a spatial labeling plane may be difficult",
+  "supports": "There is no single feeding artery on which to place a placental labelling plane.",
+  "why": "The mechanistic reason placental pCASL is hard and why VSASL and FAIR appear instead - stated by the ISMRM study group itself."
+ },
+ {
+  "pdf": "suzuki2024_osipi_asl_lexicon.pdf",
+  "page": 1,
+  "phrase": "for brain perfusion imaging are included",
+  "supports": "OSIPI's own ASL reporting standard is scoped to the BRAIN.",
+  "why": "Co-authored by Sudipto Dolui. Establishes that the placental gap sits inside OSIPI's own remit, not outside it."
+ },
+ {
+  "pdf": "suzuki2024_osipi_asl_lexicon.pdf",
+  "page": 1,
+  "phrase": "not intended to be limited to these techniques",
+  "supports": "The OSIPI lexicon invites extension beyond its current brain scope.",
+  "why": "Frames placental work as the extension the standard asks for rather than a departure from it."
+ },
+ {
+  "pdf": "clement2022_asl_bids.pdf",
+  "page": 6,
+  "phrase": "ASL-BIDS is validated in ASL images of the brain only",
+  "supports": "The ASL-BIDS metadata standard is validated for brain only.",
+  "why": "A placental QC tool cannot assume a validated sidecar schema exists for its data."
+ },
+ {
+  "pdf": "clement2022_asl_bids.pdf",
+  "page": 5,
+  "phrase": "velocity-selective, diffusion-weighted ASL, and functional ASL, may be implemented in a future ASL-BIDS release",
+  "supports": "Velocity-selective ASL - the placental workhorse - is explicitly out of scope in ASL-BIDS.",
+  "why": "The labelling scheme most placental studies use has no BIDS representation at all, so schema checks degrade to almost nothing."
+ },
+ {
+  "pdf": "himoto2025_toward_clinical_placental_function.pdf",
+  "page": 1,
+  "phrase": "limited availability, lack of standardization, and inadequate clinician awareness",
+  "supports": "An independent 2025 clinical review names lack of standardisation as the blocker.",
+  "why": "Second, non-ASL-specialist source for the no-consensus finding, so it does not rest on Taso alone."
+ },
+ {
+  "pdf": "himoto2025_toward_clinical_placental_function.pdf",
+  "page": 2,
+  "phrase": "no standardized definition or consensus exists for placental insufficiency",
+  "supports": "Even the clinical target of placental perfusion imaging has no agreed definition.",
+  "why": "Bounds what a QC verdict can claim: it grades the scan, never the pregnancy."
+ },
+ {
+  "pdf": "herrera2023_human_placenta_project.pdf",
+  "page": 5,
+  "phrase": "gestational-age adjusted normal ranges",
+  "supports": "The NIH Human Placenta Project states GA-adjusted normal ranges still need to be established.",
+  "why": "The funder of essentially all human placental ASL saying its own programme did not produce reference values."
+ },
+ {
+  "pdf": "herrera2023_human_placenta_project.pdf",
+  "page": 5,
+  "phrase": "remains to be determined",
+  "supports": "Which ROI to use - cotyledon, maternal-sided, fetal-sided, intervillous, composite - is unresolved.",
+  "why": "The placental analogue of the kidney cortex/medulla trap, admitted at programme level. Forces ROI to be an explicit input, never an assumption."
+ },
+ {
+  "pdf": "chappell2023_basil_toolbox.pdf",
+  "page": 12,
+  "phrase": "the BASIL toolbox does not currently provide any form of automated quality control",
+  "supports": "The field's most-used ASL quantification toolbox ships no automated QC.",
+  "why": "Cleanest evidence that the QC niche osipy-qc fills is genuinely unoccupied, in the authors' own words."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 9,
+  "phrase": "showed a 9-fold decrease over the examined cutoff velocity range",
+  "supports": "One acquisition parameter moves placental perfusion signal 9-fold.",
+  "why": "The placental version of the kidney FAIR-vs-pCASL trap: the protocol moves the number far more than the biology does, so no absolute threshold is portable."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 9,
+  "phrase": "tSNR dropped by almost a factor of 2 in going from a cutoff velocity of 1.6 to 4.4 cm/s",
+  "supports": "Even SNR itself is protocol-dependent in placental VSASL.",
+  "why": "Rules out transplanting the brain SNR threshold: the denominator moves with the sequence, not just the numerator."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 12,
+  "phrase": "we suggest similar cutoff velocities as used for the reference scan",
+  "supports": "The only placenta-specific VSASL parameter suggestion in the literature (~1.6 cm/s).",
+  "why": "IMPLEMENTATION-grade at best: one paper, ten subjects, anterior placentas only - not a consensus. Tag accordingly."
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 3,
+  "phrase": "207 \u00b1 39 mL/100 g/min and 171 \u00b1 32 mL/100 g/min, respectively",
+  "supports": "Maternal position alone shifts whole-placenta perfusion ~21%.",
+  "why": "A non-protocol, non-disease confounder larger than most reported disease effects. Maternal position must be a recorded metadata field."
+ },
+ {
+  "pdf": "seiter2024_vsasl_2nd_trimester_bmi.pdf",
+  "page": 6,
+  "phrase": "the obese cohort perfusion significantly rose from 249\u00b186 to 336\u00b184 ml/100 g/min",
+  "supports": "Maternal BMI shifts measured placental perfusion at fixed gestational age.",
+  "why": "A subject covariate as large as most disease effects, so a normative band would need BMI conditioning as well as GA conditioning."
+ },
+ {
+  "pdf": "avilesverdera2023_low_field_055t_pregnancy.pdf",
+  "page": 7,
+  "phrase": "for the 0.55-T examination and 93.3%",
+  "supports": "The same pregnancy protocol consumes 93.3% of the SAR limit at 3 T versus 11.4% at 0.55 T.",
+  "why": "Field strength dictates the achievable placental ASL protocol through the SAR budget, so field strength is confounded with every reported number."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 12,
+  "phrase": "movement of the placenta due to maternal respiration or fetal motion within the range of the",
+  "supports": "VSASL can label moving TISSUE as if it were blood.",
+  "why": "A placenta-specific failure mode with no brain analogue: motion does not merely add noise here, it manufactures apparent perfusion."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 5,
+  "phrase": "voxels (within the uterus region) with a value of more than",
+  "supports": "The only explicit, reproducible outlier-rejection rule in placental ASL.",
+  "why": "IMPLEMENTATION-grade and directly portable: reject a subtraction image if >20% of uterus voxels lie beyond +/-1.5 SD of the temporal mean."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 8,
+  "phrase": "label-control pairs were considered outliers and rejected for each VS-ASL acquisition",
+  "supports": "Roughly 4 of ~16 label-control pairs are rejected per placental VSASL scan in practice.",
+  "why": "Gives the expected operating point of that rule, so a QC report can say whether a rejection count is normal or alarming."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 8,
+  "phrase": "for the ASL source images was on average 6.7 \u00b1 3.1% for all",
+  "supports": "Post-motion-correction normalised temporal SD in placenta is 6.7 +/- 3.1%.",
+  "why": "The only published reference distribution for placental ASL motion-correction quality - the closest thing to a calibratable placental motion metric."
+ },
+ {
+  "pdf": "dellschaft2020_haemodynamics_human_placenta.pdf",
+  "page": 13,
+  "phrase": "displacement from the reference volume due to errors in respiratory gating",
+  "supports": "A published two-tier volume-level motion rejection rule for placental MRI (>5 mm).",
+  "why": "Volume-level criterion of the only paper that rejects rather than corrects placental motion."
+ },
+ {
+  "pdf": "dellschaft2020_haemodynamics_human_placenta.pdf",
+  "page": 13,
+  "phrase": "if more than four data points were discarded during the low b-values",
+  "supports": "The same rule's scan-level discard criterion.",
+  "why": "Shows placental QC prior art already operates at two levels - per-volume and per-scan - which is the structure osipy-qc should mirror."
+ },
+ {
+  "pdf": "uus2020_deformable_svr_placenta.pdf",
+  "page": 8,
+  "phrase": "the optimal values corresponding to adequate registration quality are",
+  "supports": "Published slice-rejection thresholds validated on placenta: NCC 0.75 global, SSIM 0.6 local.",
+  "why": "The only placenta-validated numeric registration-quality cut-offs found; still IMPLEMENTATION-grade, tuned on one cohort."
+ },
+ {
+  "pdf": "ebner2020_niftymic_fetal_brain.pdf",
+  "page": 7,
+  "phrase": "per iteration to account for increasing accuracy",
+  "supports": "Fetal-MRI slice rejection uses an annealed NCC threshold (0.5 -> 0.65 -> 0.8).",
+  "why": "Prior art for the threshold schedule; note it is fetal BRAIN, so the numbers do not transfer to placenta unre-derived."
+ },
+ {
+  "pdf": "kuklisovamurgasova2012_outlier_removal_fetal.pdf",
+  "page": 2,
+  "phrase": "the identified outliers are removed com-",
+  "supports": "The foundational fetal outlier-rejection method estimates its own inlier distribution.",
+  "why": "The template for a threshold-free placental QC design: an EM-fitted mixture cannot penalise a site for older hardware the way a fixed cut-off can."
+ },
+ {
+  "pdf": "karolis2025_dhcp_fetal_fmri_release.pdf",
+  "page": 12,
+  "phrase": "dvars > p 75 + 1.5iqr",
+  "supports": "dHCP excludes fetal fMRI scans using Tukey fences computed WITHIN the cohort.",
+  "why": "Directly answers the mentors' preclinical objection: a within-cohort fence grades the scan relative to its peers instead of grading the hardware."
+ },
+ {
+  "pdf": "kim2025_volume_censoring_fetal_connectivity.pdf",
+  "page": 3,
+  "phrase": "volumes were censored at different fd levels: 0.5, 1.0, 1.5, 2.0, and 2.5 mm",
+  "supports": "In-utero motion thresholds must be re-derived, not inherited from adult brain practice.",
+  "why": "Systematic sweep concluding 1.5-2.0 mm for fetuses - several times more permissive than adult fMRI."
+ },
+ {
+  "pdf": "schabel2022_longitudinal_t2star_normative.pdf",
+  "page": 5,
+  "phrase": "values of 250 ms or more being excluded",
+  "supports": "A published, directly copyable amniotic-fluid contamination exclusion rule.",
+  "why": "Placenta-specific contamination check from the largest two-site placental functional MRI cohort (T2*, not ASL - tag the modality)."
+ },
+ {
+  "pdf": "liu2023_consistency_regularization_placenta_seg.pdf",
+  "page": 7,
+  "phrase": "for dice w. ground truth and",
+  "supports": "Temporal Dice between consecutive frames is computable with NO ground truth.",
+  "why": "A ground-truth-free placental motion/segmentation check that runs inside an institution that cannot share data. Its 0.8/0.7 cut-offs are UNCALIBRATED defaults."
+ },
+ {
+  "pdf": "martin2020_uterine_motion_tracking.pdf",
+  "page": 5,
+  "phrase": "defined by the shift greater than 1 mm",
+  "supports": "Operational definition of uterine-contraction onset in placental MRI.",
+  "why": "Gives a computable trigger for a contraction flag rather than a subjective one."
+ },
+ {
+  "pdf": "martin2020_uterine_motion_tracking.pdf",
+  "page": 7,
+  "phrase": "7.8 \u00b1 5.5",
+  "supports": "Uterine-contraction motion (7.8 +/- 5.5 mm) dwarfs maternal respiratory motion (2.1 +/- 2.1 mm).",
+  "why": "Sets the magnitude any placental motion check must resolve, and shows the dominant mode is NOT breathing."
+ },
+ {
+  "pdf": "ji2023_fetal_behavior_mri.pdf",
+  "page": 6,
+  "phrase": "group average mean FD was 4.78 mm",
+  "supports": "Fetal motion runs about an order of magnitude above adult fMRI framewise displacement.",
+  "why": "Quantifies why an adult FD threshold would fail every scan. Caveat: fetal BRAIN, not placenta."
+ },
+ {
+  "pdf": "dewick2026_placental_contractions.pdf",
+  "page": 2,
+  "phrase": "placental contractions occurred in at least 60% of our healthy pregnant population",
+  "supports": "Placental contractions occur in at least 60% of HEALTHY pregnancies.",
+  "why": "For a 5-10 minute ASL acquisition this is close to a coin flip, so a QC tool that cannot tell 'contracting' from 'broken' will misgrade the majority of scans. PREPRINT - flag as such."
+ },
+ {
+  "pdf": "dewick2026_placental_contractions.pdf",
+  "page": 2,
+  "phrase": "contractions involving a decrease in placental volume of >10%",
+  "supports": "An operational >10% placental-volume-decrease criterion for contraction detection.",
+  "why": "Implementable Stream A raw-data check that needs no reference image."
+ },
+ {
+  "pdf": "dellschaft2020_haemodynamics_human_placenta.pdf",
+  "page": 9,
+  "phrase": "a simultaneous reduction in placental volume by up to 40%",
+  "supports": "The utero-placental pump can transiently remove up to 40% of placental volume.",
+  "why": "No rigid-body registration and no fixed ROI survives a 40% volume change - the tool must detect this, not assume it away."
+ },
+ {
+  "pdf": "hutter2022_t2star_deformation_prelabour_contractions.pdf",
+  "page": 1,
+  "phrase": "A total of 226 MRI scans",
+  "supports": "Contractile events were found by eye in 226 placental scans because no automated detector exists.",
+  "why": "Direct evidence that an automated contraction flag would be new capability, not a reimplementation."
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 2,
+  "phrase": "188 \u00b1 40 mL/100 g/min in healthy pregnancies",
+  "supports": "Reference healthy whole-placenta VSASL value, 1.5 T.",
+  "why": "The most-cited placental ASL normal value. Scope it strictly: VSASL, 1.5 T, whole placenta, GA 21-39 wk."
+ },
+ {
+  "pdf": "zun2017_vsasl_fetal_heart_disease.pdf",
+  "page": 4,
+  "phrase": "0.58 \u00b1 0.10 in healthy pregnancies",
+  "supports": "Healthy placental spatial coefficient of variation is 0.58 +/- 0.10.",
+  "why": "Sits dangerously close to the brain sCoV FAIL threshold of 0.67 that osipy-qc already ships - so the brain module cannot be reused at its brain cut-off."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 8,
+  "phrase": "in the whole-placenta region and 4.3 \u00b1 1.2%",
+  "supports": "Whole-placenta 2.4% vs focal hyperintense 4.3% perfusion-weighted signal in the SAME women.",
+  "why": "A 1.8x swing from ROI choice alone. The placental ROI trap, in protocol-free units."
+ },
+ {
+  "pdf": "seiter2024_vsasl_2nd_trimester_bmi.pdf",
+  "page": 6,
+  "phrase": "rose from 216\u00b169 to 257\u00b167 ml/100 g/min in the non-obese cohort",
+  "supports": "VSASL whole-placenta values at GA 15 and 21 weeks.",
+  "why": "Roughly twice the pCASL values at matched gestational age - the labelling-scheme gap, measured in a second independent lab."
+ },
+ {
+  "pdf": "linksourani2026_late_gestation_structure_perfusion.pdf",
+  "page": 6,
+  "phrase": "The mean PBF (149.2 \u00b1 16.6 mL/100 g/min) and mean ATT",
+  "supports": "Third-trimester pCASL whole-placenta value and arterial transit time.",
+  "why": "The only late-gestation normative pCASL point. The ~1670 ms ATT is why single-PLD placental pCASL is fragile."
+ },
+ {
+  "pdf": "linksourani2026_late_gestation_structure_perfusion.pdf",
+  "page": 6,
+  "phrase": "no significant correlations with GA were found",
+  "supports": "Within a narrow recruitment window no GA correlation is detectable.",
+  "why": "Explains why both a fixed band and a GA-conditioned band are hard to build from the existing literature."
+ },
+ {
+  "pdf": "hutter2020_perfox_perfusion_oxygenation.pdf",
+  "page": 5,
+  "phrase": "We therefore express the perfusion maps in arbitrary units",
+  "supports": "A leading group deliberately refuses to quantify placental perfusion in physiological units.",
+  "why": "The most honest sentence in placental ASL, and the strongest argument that an absolute mL/100 g/min threshold is not a safe QC anchor."
+ },
+ {
+  "pdf": "hutter2020_perfox_perfusion_oxygenation.pdf",
+  "page": 10,
+  "phrase": "we assessed reproducibility between 2 sessions",
+  "supports": "Between-session placental reproducibility (CoV 9.8 +/- 6.3%) is far worse than back-to-back.",
+  "why": "Bounds how tight any placental consistency check can be. Do not quote the 3.5% back-to-back figure as if it were rescan reproducibility."
+ },
+ {
+  "pdf": "chandrasekhar2026_adc_perfusion_iugr_3t.pdf",
+  "page": 5,
+  "phrase": "using a cut-off value of 93.75 ml/100 g/min",
+  "supports": "The only published placental perfusion diagnostic cut-off - and it should NOT be adopted.",
+  "why": "Single centre, n=60, AUC only 0.703, and small elliptical ROIs rather than whole placenta. A worked example of a threshold that grades the protocol."
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 18,
+  "phrase": "is contributed to by both maternal and fetal flow",
+  "supports": "VSASL signal comes from BOTH circulations; pCASL labels the maternal supply.",
+  "why": "The two schemes measure different physiological quantities, so their values are not interconvertible and must never be pooled."
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 18,
+  "phrase": "to selectively label maternal placental perfusion",
+  "supports": "pCASL in the placenta labels the maternal supply only.",
+  "why": "The maternal/fetal distinction stated by the ISMRM review, needed in one line by any placental design doc."
+ },
+ {
+  "pdf": "taso2023_body_asl_outside_brain.pdf",
+  "page": 17,
+  "phrase": "labeling efficiency of PCASL",
+  "supports": "Slow aortic blood velocity degrades placental pCASL labelling efficiency (~77%).",
+  "why": "Explains why placental pCASL is intrinsically harder than brain pCASL, and why the labelling-efficiency constant is itself contested."
+ },
+ {
+  "pdf": "hall2024_placental_t2star_field_strength.pdf",
+  "page": 1,
+  "phrase": "Dice scores of 0.807 at 3T, 0.796 at 1.5T and 0.815 at 0.55T",
+  "supports": "Automatic placental segmentation is essentially field-strength independent.",
+  "why": "Matters because placental ASL is often at 1.5 T for SAR reasons; one might otherwise assume low field is worse."
+ },
+ {
+  "pdf": "hall2024_placental_t2star_field_strength.pdf",
+  "page": 1,
+  "phrase": "z-scores calculated",
+  "supports": "GA-and-field-specific z-scores remove field-strength dependence from a placental measure.",
+  "why": "The architecture a placental ASL QC layer should imitate: score against a protocol-matched reference, never against a raw absolute threshold."
+ },
+ {
+  "pdf": "abulnaga2023_shape_aware_placenta_segmentation.pdf",
+  "page": 8,
+  "phrase": "achieve a mean Dice score of 82.80",
+  "supports": "Openly downloadable placenta segmentation on EPI time series reaches Dice ~82.8.",
+  "why": "The same readout family as placental ASL, GPL-3.0, CPU-capable - i.e. usable behind an institutional firewall."
+ },
+ {
+  "pdf": "jacobwitz2026_normative_placental_volume_zscores.pdf",
+  "page": 1,
+  "phrase": "there is a paucity of established standardized normative raw values and z-scores",
+  "supports": "Normative placental references exist for VOLUME, not perfusion.",
+  "why": "Shows exactly what a placental perfusion normative table would have to look like, and that nobody has built one."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 12,
+  "phrase": "relative volumes are roughly 70% vs 30%",
+  "supports": "At ~30 weeks the placenta is roughly 70% maternal / 30% fetal blood by volume.",
+  "why": "The only quantitative maternal-vs-fetal split found, and it carries an explicit equal-labelling-efficiency assumption that should be quoted with it."
+ },
+ {
+  "pdf": "harteveld2020_vsasl_settings_placenta.pdf",
+  "page": 12,
+  "phrase": "to allow adequate time for o 2 exchange",
+  "supports": "Intervillous transit takes ~25-30 s, far beyond any ASL label lifetime.",
+  "why": "The physical ceiling on placental ASL: the label decays long before the blood has crossed the organ, so the measurement is inlet-weighted, not whole-organ."
+ },
+ {
+  "pdf": "sanchez2024_fetmrqc.pdf",
+  "page": 1,
+  "phrase": "1600 manually rated fetal brain T2-weighted images from four clinical centers and 13 different scanners",
+  "supports": "The closest existing analogue to osipy-qc for in-utero MRI is multi-centre and BIDS-based.",
+  "why": "Architectural precedent for the non-shareable-data constraint. Borrow the architecture; its metrics are fetal BRAIN T2w and are not validated on placenta or on ASL."
+ },
+ {
+  "pdf": "sanchez2024_fetmrqc.pdf",
+  "page": 4,
+  "phrase": "ensem- ble of 332 image quality metrics",
+  "supports": "FetMRQC predicts expert ratings from a large bank of image quality metrics.",
+  "why": "Shows the shape of a workable in-house QC tool: extract metrics locally, share only the metrics, never the images."
+ },
+ {
+  "pdf": "specktorfadida2025_segqc.pdf",
+  "page": 4,
+  "phrase": "ground truth quality is usually defined as the segmentation evaluation metric",
+  "supports": "Prior art exists for grading a segmentation without ground truth, demonstrated on fetal MRI including placenta.",
+  "why": "Read before designing any placental mask-quality check so the toolbox does not reinvent it. Placenta-specific error-detection numbers are not in the accessible text."
+ },
+ {
+  "pdf": "fan2023_osipi_pipeline_inventory.pdf",
+  "page": 4,
+  "phrase": "the approximate number of ASL studies and ASL scans processed by the pipeline",
+  "supports": "OSIPI's own pipeline inventory records per-pipeline usage, including non-brain use.",
+  "why": "The inventory is the citable basis for 'no non-brain ASL pipeline is registered with OSIPI' - check the live inventory document, not only the paper."
+ },
+ {
+  "pdf": "costanzo2025_fetas_platform.pdf",
+  "page": 1,
+  "phrase": "artifact detection, motion correction, segmentation of the fetal body, amniotic fluid, and placenta",
+  "supports": "The one tool combining artifact detection, motion correction and placenta segmentation is a hosted web service.",
+  "why": "Read as the competitor that CANNOT serve this use case: mentors who may not export placental images cannot use a hosted platform. Justifies local-first design."
+ },
+ {
+  "pdf": "avilesverdera2025_heron_realtime_fetal_dwi.pdf",
+  "page": 4,
+  "phrase": "allowing real-time re-acquisition of corrupted volumes",
+  "supports": "Real-time on-scanner fetal MRI QC with automatic re-acquisition is already demonstrated.",
+  "why": "The endgame for a QC layer that must run where the scan is, because the scan cannot leave."
+ },
+ {
+  "pdf": "snoussi2025_haitch_fetal_dwi.pdf",
+  "page": 6,
+  "phrase": "we employ a modified z- score and median absolute deviation",
+  "supports": "Modern fetal DWI pipelines down-weight rather than hard-reject corrupted data.",
+  "why": "A soft-rejection design that avoids a brittle cut-off. Note its z-thresholds are never given numeric values, i.e. UNCALIBRATED."
+ },
+ {
+  "pdf": "sorensen2020_t2star_placental_review.pdf",
+  "page": 9,
+  "phrase": "we recommend including as much placental tissue as possible in the region of interest",
+  "supports": "Expert recommendation: use the largest possible placental ROI for a reproducible mean.",
+  "why": "The only actionable placental ROI guidance found. EXPERT RECOMMENDATION, not consensus, and it concerns T2* rather than ASL - label both caveats."
+ },
+ {
+  "pdf": "turnbull2026_t2star_susceptibility_placental_health.pdf",
+  "page": 4,
+  "phrase": "the shortest distance to the basal plate and chorionic plate was calculated",
+  "supports": "Regional placental analysis uses normalised distance to the basal and chorionic plates.",
+  "why": "An implementable recipe for maternal / central / fetal regions. PREPRINT - not yet peer reviewed."
+ },
+ {
+  "pdf": "seiter2022_ferumoxytol_dce_cotyledon_macaque.pdf",
+  "page": 1,
+  "phrase": "number of perfusion domains, and perfusion domain volume",
+  "supports": "Cotyledon-level perfusion domains are real anatomy, validated against delivered placentas.",
+  "why": "Supports treating the placenta as a set of sub-units rather than one homogeneous ROI. Macaque, not human - do not present the values as human."
+ },
+ {
+  "pdf": "chernyavsky2010_intervillous_flow_placentone.pdf",
+  "page": 4,
+  "phrase": "reference radius of a placentone",
+  "supports": "The placentone (one villous tree plus its decidual vessels) has a reference radius of ~2 cm.",
+  "why": "Sizes the sub-unit: cotyledon-scale ROIs are resolvable at standard placental ASL resolution, so a per-region metric is physically possible."
+ },
+ {
+  "pdf": "deloison2021_dce_placental_perfusion.pdf",
+  "page": 1,
+  "phrase": "showed significantly lower total placental blood flow values than AGA fetuses",
+  "supports": "Contrast DCE shows total placental flow separates growth restriction where flow per unit volume does not.",
+  "why": "Independent non-ASL confirmation that perfusion density is often the wrong statistic - the placenta is small, not under-perfused per gram."
+ },
+ {
+  "pdf": "mhra2014_mri_safety_guidelines.pdf",
+  "page": 13,
+  "phrase": "there are uncertainties concerning the effects of increased heat loads on infants and pregnant women",
+  "supports": "Regulatory guidance treats pregnancy as a special thermal-exposure case.",
+  "why": "Free, citable substitute for the paywalled IEC and ICNIRP primary documents - but cite it honestly as MHRA quoting IEC, not as IEC itself."
+ },
+ {
+  "pdf": "yetisir2025_fetal_rf_safety_3t.pdf",
+  "page": 4,
+  "phrase": "assuming a constant 60-min 2 W/kg wbSAR RF exposure at 3-T and 1.5-T",
+  "supports": "Fetal RF safety at 3 T is an active constraint, not a formality.",
+  "why": "Explains why placental protocols are de-tuned at 3 T and why several groups chose 1.5 T, which in turn confounds every reported placental perfusion value."
+ },
+ {
+  "pdf": "zhu2025_dielectric_pads_fetal_3t.pdf",
+  "page": 2,
+  "phrase": "the wavelength of the transmission field is shortened at 3 T and becomes comparable to the dimensions of the gravid abdomen",
+  "supports": "Standing-wave shading in the gravid abdomen degrades 3 T fetal imaging.",
+  "why": "A physical reason placental ASL groups chose 1.5 T. Caution: its SNR numbers are fetal-brain ROIs, not placenta."
+ },
+ {
+  "pdf": "avilesverdera2024_t1_fetal_brain_placenta_055t.pdf",
+  "page": 3,
+  "phrase": "a decrease in placental T1 or no significant correlation with gestational age",
+  "supports": "Placental T1 is both field-strength and gestational-age dependent.",
+  "why": "No single T1 constant can be hard-coded in a placental quantification or background-suppression check."
+ },
+ {
+  "pdf": "slator2019_placenta_imaging_workshop_2018.pdf",
+  "page": 5,
+  "phrase": "reproducibility, and more is needed regarding future protocol development",
+  "supports": "The placenta imaging community's own statement that reproducibility and protocol standardisation are unsolved.",
+  "why": "Community-level framing of the niche the QC toolbox fills, from a workshop report rather than a single group."
+ },
+ {
+  "pdf": "jittou2025_placenta_segmentation_review.pdf",
+  "page": 4,
+  "phrase": "annotated placental datasets are often limited by their small size and imbalance",
+  "supports": "Consolidated review of MRI placenta segmentation performance.",
+  "why": "Use only as a SECONDARY source for segmentation numbers; re-cite each to its primary before any number becomes load-bearing."
+ },
+ {
+  "pdf": "sadiku2024_advanced_placental_mri_fgr_chd.pdf",
+  "page": 8,
+  "phrase": "the supine position may impair oxygenation compared to the left lateral position",
+  "supports": "Broad review of advanced placental MRI in growth restriction and congenital heart disease.",
+  "why": "Orientation read covering where ASL sits among T2, T2*, BOLD and IVIM alternatives."
+ },
+ {
+  "pdf": "puris2025_fetal_safety_mri_review.pdf",
+  "page": 1,
+  "phrase": "on MRI safety during pregnancy, focusing on 3 T MRI and gadolinium use",
+  "supports": "Recent open-access synthesis of MRI safety in pregnancy.",
+  "why": "Navigational review only - every number in it is second-hand and must be traced to its primary."
+ },
+ {
+  "pdf": "ho2020_t2star_preterm_preeclampsia.pdf",
+  "page": 1,
+  "phrase": "reduced entire placental mean T2* values for gestational age",
+  "supports": "Placental disease IS cleanly detectable by MRI - with T2*, not with ASL perfusion.",
+  "why": "Argues the QC tool should not over-invest in absolute perfusion plausibility: the failure to separate is specific to the perfusion metric."
+ },
+ {
+  "pdf": "driver2026_vsasl_bolus_duration.pdf",
+  "page": 1,
+  "phrase": "we observed a significant decrease in bolus duration during hypercapnia",
+  "supports": "VSASL bolus duration shortens with increased flow velocity, challenging the recommended tau.",
+  "why": "Directly transferable concern: the placenta is a high-flow organ whose bolus duration has never been measured - a concrete, defensible gap to raise."
+ },
+ {
+  "pdf": "wang2016_slicseg_placenta_segmentation.pdf",
+  "page": 1,
+  "phrase": "only needs user interactions in a single slice",
+  "supports": "Semi-automatic placental segmentation from one slice of scribbles is a legitimate design target.",
+  "why": "For a tool operable by someone who cannot send you the scan, a one-slice path may beat both 'require a mask' and 'require a GPU model'."
+ },
+ {
+  "pdf": "zhong2025_contrast_invariant_placental_segmentation.pdf",
+  "page": 1,
+  "phrase": "masked pseudo-labeling (MPL) for semi-supervised domain adaptation across echo times",
+  "supports": "Placental segmentation accuracy degrades as image contrast degrades.",
+  "why": "The exact failure mode for ASL, whose difference image carries almost no anatomical contrast - so a mask derived from the ASL data itself is the weakest option."
+ },
+ {
+  "pdf": "lu2022_ivim_dki_placenta_accreta.pdf",
+  "page": 1,
+  "phrase": "patients with PAS disorders and 27 patients with normal placentas",
+  "supports": "Placenta accreta spectrum is NOT a low-perfusion state.",
+  "why": "Bounds the clinical reach of any perfusion-level check: it has no bearing on accreta whatsoever."
+ },
+ {
+  "pdf": "sohlberg2015_ivim_placental_perfusion_fgr.pdf",
+  "page": 1,
+  "phrase": "to evaluate in-vivo placental perfusion frac-",
+  "supports": "IVIM perfusion FRACTION shows a clear disease gradient - in different units from ASL.",
+  "why": "Severe placental hypoperfusion is real and large; it is simply not what ASL mean perfusion measures. Never mix these units."
+ }
+]
